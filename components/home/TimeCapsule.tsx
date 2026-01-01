@@ -67,23 +67,23 @@ export function TimeCapsule({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center w-full max-w-2xl text-center space-y-6"
+            className="flex flex-col items-center w-full max-w-2xl text-center space-y-4 md:space-y-6"
         >
-            <h2 className="text-4xl sm:text-5xl font-display text-glow">{titleText}</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-glow">{titleText}</h2>
 
             {(subtitleText || !isViewMode) && (
-                <p className="text-muted-foreground text-lg max-w-md">
+                <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-md">
                     {subtitleText}
                 </p>
             )}
 
-            <div className="relative w-full flex flex-col gap-4">
+            <div className="relative w-full flex flex-col gap-3 md:gap-4">
                 <input
                     type="text"
                     value={wish}
                     onChange={(e) => setWish(e.target.value)}
                     placeholder={placeholder}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-xl sm:text-2xl placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-display disabled:opacity-50 text-center"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 text-lg sm:text-xl md:text-2xl placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-display disabled:opacity-50 text-center"
                     autoFocus={!isViewMode}
                     readOnly={isViewMode}
                     disabled={isSending}
@@ -92,13 +92,13 @@ export function TimeCapsule({
 
                 {!isViewMode && setUsername && !isUpdate && (
                     <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-mono opacity-50">momentzero.app/</span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-xs md:text-sm font-mono opacity-50">momentzero.app/</span>
                         <input
                             type="text"
                             value={username || ""}
                             onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ''))}
                             placeholder={usernamePlaceholder || "username"}
-                            className="w-full bg-black/20 border border-white/5 rounded-xl p-4 pl-36 text-sm font-mono text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-all"
+                            className="w-full bg-black/20 border border-white/5 rounded-xl p-3 md:p-4 pl-32 md:pl-36 text-xs md:text-sm font-mono text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-all"
                             disabled={isSending}
                         />
                     </div>
@@ -110,7 +110,7 @@ export function TimeCapsule({
                             <button
                                 onClick={isUpdate ? onUpdate : onSend}
                                 disabled={isSending || !wish.trim() || (!isUpdate && setUsername && !username)}
-                                className="w-full py-4 bg-primary/20 hover:bg-primary/40 rounded-xl flex items-center justify-center gap-2 transition-all group disabled:opacity-50 disabled:cursor-not-allowed font-medium tracking-wide uppercase text-sm cursor-pointer border border-primary/20"
+                                className="w-full py-3 md:py-4 bg-primary/20 hover:bg-primary/40 rounded-xl flex items-center justify-center gap-2 transition-all group disabled:opacity-50 disabled:cursor-not-allowed font-medium tracking-wide uppercase text-xs md:text-sm cursor-pointer border border-primary/20"
                             >
                                 {isSending ? (
                                     <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />

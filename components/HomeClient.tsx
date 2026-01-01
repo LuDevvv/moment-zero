@@ -175,7 +175,7 @@ export function HomeClient({ lang, initialState }: HomeProps) {
             </div>
 
             {/* Main Content Area */}
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center justify-center min-h-[60vh]">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center justify-center min-h-[60vh] pt-24 sm:pt-32">
                 <AnimatePresence mode="wait">
                     {view === "countdown" ? (
                         <CountdownView

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { LivePresence } from "@/components/ui/LivePresence";
 import dynamic from 'next/dynamic';
 
@@ -18,6 +19,21 @@ interface CountdownViewProps {
 export function CountdownView({ lang, layout, targetYear, onToggleView }: CountdownViewProps) {
     const formattedTitle = lang.yearBeginsIn ? lang.yearBeginsIn.replace("%s", targetYear.toString()) : `The Year ${targetYear} Begins In`;
 
+    // Dynamic Phrase Logic
+    const [phraseIndex, setPhraseIndex] = React.useState(0);
+    const phrases = lang.dynamicPhrases || [lang.timeUntilFuture || "Time until the future."];
+
+    React.useEffect(() => {
+        if (!lang.dynamicPhrases || lang.dynamicPhrases.length === 0) return;
+        const interval = setInterval(() => {
+            setPhraseIndex((prev) => (prev + 1) % phrases.length);
+        }, 8000); // Cycle every 8 seconds
+        return () => clearInterval(interval);
+    }, [lang.dynamicPhrases, phrases.length]);
+
+    // Check if current phrase is potentially CJK for font adjustment (optional, or just rely on global)
+    // Here we just use a fade animation key
+
     return (
         <motion.div
             key="countdown"
@@ -25,7 +41,7 @@ export function CountdownView({ lang, layout, targetYear, onToggleView }: Countd
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
             transition={{ duration: 0.8, ease: "circOut" }}
-            className="flex flex-col items-center space-y-8 sm:space-y-12 pb-24 sm:pb-0"
+            className="flex flex-col items-center space-y-6 sm:space-y-10 pb-24 sm:pb-0"
         >
 
 
@@ -42,10 +58,21 @@ export function CountdownView({ lang, layout, targetYear, onToggleView }: Countd
 
             <Timer labels={lang} layout={layout} />
 
-            {/* Bottom Phrase */}
-            <p className="font-display italic text-xl sm:text-2xl text-muted-foreground/80 text-glow-lg text-center px-4">
-                &quot;{lang.timeUntilFuture || "Time until the future."}&quot;
-            </p>
+            {/* Bottom Phrase - Dynamic */}
+            <div className="h-20 flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                    <motion.p
+                        key={phraseIndex}
+                        initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                        transition={{ duration: 0.8 }}
+                        className="font-display italic text-lg sm:text-xl md:text-2xl text-muted-foreground/80 text-glow-lg text-center px-4 max-w-3xl"
+                    >
+                        &quot;{phrases[phraseIndex]}&quot;
+                    </motion.p>
+                </AnimatePresence>
+            </div>
 
             {/* Call to Action - In Flow */}
             <motion.button
@@ -54,7 +81,7 @@ export function CountdownView({ lang, layout, targetYear, onToggleView }: Countd
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onToggleView}
-                className="mt-8 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white font-medium text-xs uppercase tracking-[0.2em] transition-all group overflow-hidden relative z-30"
+                className="mt-4 md:mt-6 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white font-medium text-xs uppercase tracking-[0.2em] transition-all group overflow-hidden relative z-30"
             >
                 <span className="relative z-10 group-hover:text-primary transition-colors">{lang.enterButton || "Open Time Capsule"}</span>
                 <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />

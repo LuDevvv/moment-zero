@@ -107,12 +107,12 @@ function SplitDigit({ char, layout }: { char: string; layout: string }) {
 
     // Adjust sizes based on layout
     const widthClass = isBoxed
-        ? "w-[9vw] sm:w-[8vw] md:w-[4rem] lg:w-[6rem] xl:w-[7rem]"
-        : "w-[14vw] sm:w-[10vw] md:w-[5rem] lg:w-[7rem] xl:w-[9rem]";
+        ? "w-[9vw] sm:w-[8vw] md:w-[4rem] lg:w-[5rem] xl:w-[6rem]"
+        : "w-[14vw] sm:w-[10vw] md:w-[5rem] lg:w-[6rem] xl:w-[8rem]";
 
     const textClass = isBoxed
-        ? "text-[12vw] sm:text-[9vw] md:text-[5rem] lg:text-[7rem] xl:text-[9rem]"
-        : "text-[18vw] sm:text-[13vw] md:text-[7rem] lg:text-[10rem] xl:text-[13rem]";
+        ? "text-[12vw] sm:text-[9vw] md:text-[5rem] lg:text-[6rem] xl:text-[8rem]"
+        : "text-[18vw] sm:text-[13vw] md:text-[7rem] lg:text-[8rem] xl:text-[11rem]";
 
     return (
         <div className={cn(

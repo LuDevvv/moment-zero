@@ -21,12 +21,26 @@ export function AmbientPlayer({ t }: AmbientPlayerProps) {
     const [isHovering, setIsHovering] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+
     // Initialize state from localStorage
     useEffect(() => {
         const savedVolume = localStorage.getItem("mz-volume");
         if (savedVolume) {
             setVolume(parseFloat(savedVolume));
         }
+
+        // Click outside listener
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setIsHovering(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
 
     // Sync volume with audio element and localStorage
@@ -76,6 +90,7 @@ export function AmbientPlayer({ t }: AmbientPlayerProps) {
 
     return (
         <div
+            ref={containerRef}
             className="fixed bottom-6 left-6 z-50 flex items-center gap-4 group"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
@@ -100,7 +115,7 @@ export function AmbientPlayer({ t }: AmbientPlayerProps) {
                     )}
                 </button>
 
-                {/* Volume Slider - Reveal on Hover */}
+                {/* Volume Slider - Reveal on Hover/Interaction */}
                 <div className={cn(
                     "absolute left-full ml-2 flex items-center bg-black/40 backdrop-blur-md rounded-full px-3 py-2 transition-all duration-300 origin-left border border-white/5",
                     (isHovering && isPlaying) ? "opacity-100 scale-100 translate-x-0" : "opacity-0 scale-90 -translate-x-4 pointer-events-none"
@@ -111,6 +126,8 @@ export function AmbientPlayer({ t }: AmbientPlayerProps) {
                         max="1"
                         step="0.01"
                         value={volume}
+                        // Keep open while interacting
+                        onInput={() => setIsHovering(true)}
                         onChange={handleVolumeChange}
                         className="w-20 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-primary"
                     />

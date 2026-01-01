@@ -187,135 +187,145 @@ export function ThemePanel({ t }: ThemePanelProps) {
             {/* Side Panel */}
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
-                        initial={{ x: "100%", opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: "100%", opacity: 0 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed top-0 right-0 h-full w-80 sm:w-96 glass-panel border-l border-white/10 bg-[#050505]/80 backdrop-blur-xl z-50 flex flex-col shadow-2xl overflow-y-auto"
-                    >
-                        {/* Header */}
-                        <div className="p-6 pb-2 flex justify-between items-center border-b border-white/5">
-                            <h2 className="font-display text-2xl italic tracking-wide text-white">{t.settings || "Personalize"}</h2>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                className="p-2 hover:bg-white/5 rounded-full transition-colors"
-                            >
-                                <X size={20} className="opacity-50" />
-                            </button>
-                        </div>
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px]"
+                            onClick={() => setIsOpen(false)}
+                        />
+                        <motion.div
+                            initial={{ x: "100%", opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: "100%", opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="fixed top-0 right-0 h-full w-80 sm:w-96 glass-panel border-l border-white/10 bg-[#050505]/80 backdrop-blur-xl z-50 flex flex-col shadow-2xl overflow-y-auto"
+                        >
+                            {/* Header */}
+                            <div className="p-6 pb-2 flex justify-between items-center border-b border-white/5">
+                                <h2 className="font-display text-2xl italic tracking-wide text-white">{t.settings || "Personalize"}</h2>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-2 hover:bg-white/5 rounded-full transition-colors"
+                                >
+                                    <X size={20} className="opacity-50" />
+                                </button>
+                            </div>
 
-                        <div className="flex-1 p-6 space-y-8">
+                            <div className="flex-1 p-6 space-y-8">
 
-                            {/* Accent Token */}
-                            <div className="space-y-6">
-                                <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold block mb-4">{t.accentToken || "Accent Token"}</label>
-                                <div className="flex gap-4">
-                                    {themes.map((theme) => (
-                                        <button
-                                            key={theme.id}
-                                            onClick={() => {
-                                                setTheme(theme.id);
-                                                // Auto-switch atmosphere for immersive themes
-                                                if (theme.id === "aurora") setAtmosphere("aurora");
-                                                if (theme.id === "starfield") setAtmosphere("starfield");
-                                                if (theme.id === "dark-void") setAtmosphere("void");
-                                            }}
-                                            className={cn(
-                                                "w-10 h-10 rounded-full flex items-center justify-center transition-all relative ring-offset-2 ring-offset-[#050505]",
-                                                activeTheme === theme.id ? "ring-2 ring-white scale-110" : "hover:scale-105 opacity-70 hover:opacity-100"
-                                            )}
-                                            style={{ backgroundColor: theme.color }}
-                                            aria-label={theme.label}
-                                        >
-                                            {activeTheme === theme.id && <Check size={14} className="text-black/50" />}
-                                        </button>
-                                    ))}
+                                {/* Accent Token */}
+                                <div className="space-y-6">
+                                    <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold block mb-4">{t.accentToken || "Accent Token"}</label>
+                                    <div className="flex gap-4">
+                                        {themes.map((theme) => (
+                                            <button
+                                                key={theme.id}
+                                                onClick={() => {
+                                                    setTheme(theme.id);
+                                                    // Auto-switch atmosphere for immersive themes
+                                                    if (theme.id === "aurora") setAtmosphere("aurora");
+                                                    if (theme.id === "starfield") setAtmosphere("starfield");
+                                                    if (theme.id === "dark-void") setAtmosphere("void");
+                                                }}
+                                                className={cn(
+                                                    "w-10 h-10 rounded-full flex items-center justify-center transition-all relative ring-offset-2 ring-offset-[#050505]",
+                                                    activeTheme === theme.id ? "ring-2 ring-white scale-110" : "hover:scale-105 opacity-70 hover:opacity-100"
+                                                )}
+                                                style={{ backgroundColor: theme.color }}
+                                                aria-label={theme.label}
+                                            >
+                                                {activeTheme === theme.id && <Check size={14} className="text-black/50" />}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Typography */}
+                                <div className="space-y-4">
+                                    <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">{t.typographyStyle || "Typography Style"}</label>
+                                    <div className="grid grid-cols-2 gap-2 p-1 bg-white/5 rounded-xl">
+                                        {typographies.map((type) => (
+                                            <button
+                                                key={type.id}
+                                                onClick={() => setTypography(type.id)}
+                                                className={cn(
+                                                    "py-3 px-2 rounded-lg text-xs font-medium transition-all",
+                                                    activeTypography === type.id
+                                                        ? "bg-white/10 text-white shadow-sm"
+                                                        : "text-muted-foreground hover:text-white"
+                                                )}
+                                            >
+                                                <span className={cn(
+                                                    type.id === "serif" && "font-serif italic text-base",
+                                                    type.id === "sans" && "font-sans",
+                                                    type.id === "epic" && "font-cinzel",
+                                                    type.id === "digital" && "font-syne uppercase"
+                                                )}>
+                                                    {type.label}
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Timer Layout */}
+                                <div className="space-y-4">
+                                    <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">{t.timerLayout || "Timer Layout"}</label>
+                                    <div className="grid grid-cols-2 gap-2 p-1 bg-white/5 rounded-xl">
+                                        {layouts.map((layout) => (
+                                            <button
+                                                key={layout.id}
+                                                onClick={() => setLayout(layout.id)}
+                                                className={cn(
+                                                    "py-3 px-2 rounded-lg text-xs font-medium transition-all border border-transparent",
+                                                    activeLayout === layout.id
+                                                        ? "bg-white/10 text-white shadow-sm border-white/10"
+                                                        : "text-muted-foreground hover:text-white hover:bg-white/5"
+                                                )}
+                                            >
+                                                {layout.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Atmosphere */}
+                                <div className="space-y-4">
+                                    <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">{t.atmosphereTitle || "Atmosphere"}</label>
+                                    <div className="space-y-2">
+                                        {atmospheresData.map((atm) => (
+                                            <button
+                                                key={atm.id}
+                                                onClick={() => setAtmosphere(atm.id)}
+                                                className={cn(
+                                                    "w-full flex items-center justify-between p-4 rounded-xl border transition-all text-sm",
+                                                    activeAtmosphere === atm.id
+                                                        ? "bg-primary/10 border-primary/50 text-primary"
+                                                        : "bg-transparent border-white/5 text-muted-foreground hover:bg-white/5"
+                                                )}
+                                            >
+                                                <span>{atm.label}</span>
+                                                {activeAtmosphere === atm.id && <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_currentColor]" />}
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Typography */}
-                            <div className="space-y-4">
-                                <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">{t.typographyStyle || "Typography Style"}</label>
-                                <div className="grid grid-cols-2 gap-2 p-1 bg-white/5 rounded-xl">
-                                    {typographies.map((type) => (
-                                        <button
-                                            key={type.id}
-                                            onClick={() => setTypography(type.id)}
-                                            className={cn(
-                                                "py-3 px-2 rounded-lg text-xs font-medium transition-all",
-                                                activeTypography === type.id
-                                                    ? "bg-white/10 text-white shadow-sm"
-                                                    : "text-muted-foreground hover:text-white"
-                                            )}
-                                        >
-                                            <span className={cn(
-                                                type.id === "serif" && "font-serif italic text-base",
-                                                type.id === "sans" && "font-sans",
-                                                type.id === "epic" && "font-cinzel",
-                                                type.id === "digital" && "font-syne uppercase"
-                                            )}>
-                                                {type.label}
-                                            </span>
-                                        </button>
-                                    ))}
-                                </div>
+                            {/* Footer Actions */}
+                            <div className="p-6 border-t border-white/10 space-y-3 bg-black/20">
+                                <button
+                                    onClick={handleSave}
+                                    className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold tracking-wide text-sm shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all flex items-center justify-center gap-2"
+                                >
+                                    {t.saveConfig || "Save Configuration"}
+                                </button>
                             </div>
-
-                            {/* Timer Layout */}
-                            <div className="space-y-4">
-                                <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">{t.timerLayout || "Timer Layout"}</label>
-                                <div className="grid grid-cols-2 gap-2 p-1 bg-white/5 rounded-xl">
-                                    {layouts.map((layout) => (
-                                        <button
-                                            key={layout.id}
-                                            onClick={() => setLayout(layout.id)}
-                                            className={cn(
-                                                "py-3 px-2 rounded-lg text-xs font-medium transition-all border border-transparent",
-                                                activeLayout === layout.id
-                                                    ? "bg-white/10 text-white shadow-sm border-white/10"
-                                                    : "text-muted-foreground hover:text-white hover:bg-white/5"
-                                            )}
-                                        >
-                                            {layout.label}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Atmosphere */}
-                            <div className="space-y-4">
-                                <label className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold">{t.atmosphereTitle || "Atmosphere"}</label>
-                                <div className="space-y-2">
-                                    {atmospheresData.map((atm) => (
-                                        <button
-                                            key={atm.id}
-                                            onClick={() => setAtmosphere(atm.id)}
-                                            className={cn(
-                                                "w-full flex items-center justify-between p-4 rounded-xl border transition-all text-sm",
-                                                activeAtmosphere === atm.id
-                                                    ? "bg-primary/10 border-primary/50 text-primary"
-                                                    : "bg-transparent border-white/5 text-muted-foreground hover:bg-white/5"
-                                            )}
-                                        >
-                                            <span>{atm.label}</span>
-                                            {activeAtmosphere === atm.id && <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_currentColor]" />}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Footer Actions */}
-                        <div className="p-6 border-t border-white/10 space-y-3 bg-black/20">
-                            <button
-                                onClick={handleSave}
-                                className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold tracking-wide text-sm shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all flex items-center justify-center gap-2"
-                            >
-                                {t.saveConfig || "Save Configuration"}
-                            </button>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
         </>
