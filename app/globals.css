@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-cormorant);
+  --font-mono-num: var(--font-space);
+  --font-cinzel: var(--font-cinzel);
+  --font-syne: var(--font-syne);
+  /* For tabular numbers if needed */
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  :root {
+    /* Theme: Dark Void (Default) */
+    /* HSL values without alpha */
+    --background: 224 40% 6%;
+    /* Deep Void Black */
+    --foreground: 210 40% 98%;
+
+    --surface: 224 40% 10%;
+    /* Replaces generic 'card' logic for clarity */
+    --surface-foreground: 210 40% 98%;
+
+    --card: var(--surface);
+    --card-foreground: var(--surface-foreground);
+
+    --popover: var(--surface);
+    --popover-foreground: var(--surface-foreground);
+
+    --primary: 217 91% 60%;
+    /* Electric Blue */
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 260 100% 65%;
+    /* Vivid Purple for Void accents */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 15%;
+    --input: 217 32% 15%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --glass-bg: 224 40% 10%;
+    --glass-opacity: 0.3;
+    --glass-border: 255 255 255;
+    --glass-border-opacity: 0.08;
+
+    --glow-color: 217 91% 60%;
+    --glow-intensity: 0.6;
+  }
+
+  /* Theme: Aurora */
+  .theme-aurora {
+    --background: 260 40% 10%;
+    /* Deep Purple Base */
+    --surface: 260 40% 15%;
+    --primary: 180 100% 50%;
+    /* Cyan/Teal */
+    --accent: 280 100% 70%;
+    /* Pinkish Purple */
+    --glow-color: 180 100% 50%;
+    --ring: 180 100% 50%;
+
+    --foreground: 260 50% 98%;
+    --muted-foreground: 260 30% 70%;
+  }
+
+  /* Theme: Starfield */
+  .theme-starfield {
+    --background: 222 47% 5%;
+    /* Darker Blue/Black */
+    --surface: 222 47% 10%;
+    --primary: 45 100% 60%;
+    /* Gold/Star color */
+    --accent: 200 100% 60%;
+    /* Light Blue */
+    --glow-color: 45 100% 60%;
+    --ring: 45 100% 60%;
+
+    --foreground: 220 40% 98%;
+    --muted-foreground: 220 20% 70%;
+  }
+
+  /* Legacy Themes (Optional) */
+  .theme-emerald {
+    --background: 160 40% 5%;
+    --surface: 160 40% 8%;
+    --primary: 150 70% 50%;
+    --accent: 140 70% 60%;
+    --glow-color: 150 70% 50%;
+    --ring: 150 70% 50%;
+  }
+
+  .theme-sunset {
+    --background: 10 30% 8%;
+    --surface: 10 30% 12%;
+    --primary: 15 90% 60%;
+    --accent: 35 90% 60%;
+    --glow-color: 15 90% 60%;
+    --ring: 10 90% 60%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 calc(20px * var(--glow-intensity)) hsl(var(--glow-color) / 0.5);
+  }
+
+  .text-glow-lg {
+    text-shadow: 0 0 calc(40px * var(--glow-intensity)) hsl(var(--glow-color) / 0.6);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Dynamic Typography Overrides */
+  .style-serif {
+    --font-display: var(--font-cormorant);
+  }
+
+  .style-sans {
+    --font-display: var(--font-outfit);
+  }
+
+  .style-epic {
+    --font-display: var(--font-cinzel);
+  }
+
+  .style-digital {
+    --font-display: var(--font-syne);
+  }
+
+  /* Atmosphere Controls */
+  .atmosphere-void .bg-orb {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+
+  .atmosphere-starfield .bg-orb {
+    opacity: 0.4;
+    filter: blur(80px);
+  }
+
+  .atmosphere-aurora .bg-orb {
+    opacity: 1;
+    filter: blur(120px);
+  }
+
+  /* Typography Alignments */
+  .style-serif .timer-digit-wrapper {
+    line-height: 0.8;
+    padding-bottom: 0.2em;
+    transform: translateY(-0.05em);
+  }
+}
