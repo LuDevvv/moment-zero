@@ -1,0 +1,28 @@
+{
+    "main": ".open-next/worker.js",
+    "name": "moment-zero",
+    "compatibility_date": "2024-09-23",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "assets": {
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
+    },
+    "kv_namespaces": [
+        {
+            "binding": "NEXT_CACHE_WORKERS_KV",
+            "id": "7d69bf343d614ab48e0523bf61ebedf0"
+        }
+    ],
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "moment-zero-db",
+            "database_id": "c35823f9-f1a1-4848-84f6-06a04b873a62"
+        }
+    ],
+    "observability": {
+        "enabled": true
+    }
+}

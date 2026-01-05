@@ -1,8 +1,10 @@
 import { ImageResponse } from "next/og";
-import { db } from "@/lib/db";
+import { getDb } from "@/src/db";
+import { users } from "@/src/db/schema";
+import { eq } from "drizzle-orm";
 
-// Force Node.js runtime to allow Prisma Client usage
-export const runtime = "nodejs";
+// Force Node.js runtime compat for some deps if needed, but Workers support D1
+export const runtime = "nodejs"; // OpenNext usually handles this, or use 'edge'
 
 export const size = {
     width: 1200,
@@ -37,10 +39,13 @@ export default async function Image({ params }: { params: Promise<{ username: st
     let message = "Join the Countdown";
 
     try {
-        const moment = await db.moment.findFirst({
-            where: { user: { username } },
-            orderBy: { createdAt: 'desc' },
+        const db = await getDb();
+        const user = await db.query.users.findFirst({
+            where: eq(users.username, username),
+            with: { moments: true }
         });
+
+        const moment = user?.moments[0];
         if (moment) {
             theme = moment.theme;
             targetYear = moment.targetYear;

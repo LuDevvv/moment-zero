@@ -41,11 +41,13 @@ export function useHomeState({ initialTheme = "dark-void", initialAtmosphere = "
             });
 
             if (!res.ok) {
-                const err = await res.json();
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const err = await res.json() as any;
                 throw new Error(err.error || "Failed to create moment");
             }
 
-            const data = await res.json();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const data = await res.json() as any;
 
             // Trigger success effect
             const colors = ['#bb0000', '#ffffff'];

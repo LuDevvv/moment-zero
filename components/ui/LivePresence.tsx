@@ -4,6 +4,8 @@ import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+import { useAppStore } from "@/store/useAppStore";
+
 interface LivePresenceProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     lang?: any;
@@ -13,6 +15,48 @@ export function LivePresence({ lang }: LivePresenceProps) {
     const [count, setCount] = useState(14205);
     const [currentEvent, setCurrentEvent] = useState<{ code: string; text: string } | null>(null);
     const [avatars, setAvatars] = useState<string[]>([]);
+    const { theme } = useAppStore();
+
+    // Theme Logic
+    const themeColors: Record<string, { ping: string; dot: string; text: string; scanner: string; bar: string }> = {
+        'dark-void': {
+            ping: 'bg-blue-400',
+            dot: 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]',
+            text: 'text-blue-400',
+            scanner: 'text-blue-500/50',
+            bar: 'bg-blue-500/50'
+        },
+        'aurora': {
+            ping: 'bg-purple-400',
+            dot: 'bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]',
+            text: 'text-purple-400',
+            scanner: 'text-purple-500/50',
+            bar: 'bg-purple-500/50'
+        },
+        'sunset': {
+            ping: 'bg-orange-400',
+            dot: 'bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]',
+            text: 'text-orange-400',
+            scanner: 'text-orange-500/50',
+            bar: 'bg-orange-500/50'
+        },
+        'emerald': {
+            ping: 'bg-emerald-400',
+            dot: 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]',
+            text: 'text-emerald-400',
+            scanner: 'text-emerald-500/50',
+            bar: 'bg-emerald-500/50'
+        },
+        'starfield': {
+            ping: 'bg-amber-400',
+            dot: 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]',
+            text: 'text-amber-400',
+            scanner: 'text-amber-500/50',
+            bar: 'bg-amber-500/50'
+        },
+    };
+
+    const colors = themeColors[theme] || themeColors['dark-void'];
 
     const t = lang?.liveEvents || {};
     const countries = t.countries || {};
@@ -92,8 +136,8 @@ export function LivePresence({ lang }: LivePresenceProps) {
             {/* Left: Status Dot */}
             <div className="flex items-center gap-3 shrink-0">
                 <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-emerald-500 shadow-[0_0_10px_#10b981]"></span>
+                    <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", colors.ping)}></span>
+                    <span className={cn("relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3", colors.dot)}></span>
                 </span>
             </div>
 
@@ -108,7 +152,7 @@ export function LivePresence({ lang }: LivePresenceProps) {
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -20, opacity: 0 }}
-                                className="text-xs sm:text-sm font-medium text-emerald-400 w-full flex items-center gap-2 truncate"
+                                className={cn("text-xs sm:text-sm font-medium w-full flex items-center gap-2 truncate", colors.text)}
                             >
                                 <img
                                     src={`https://flagcdn.com/w20/${currentEvent.code}.png`}
@@ -154,7 +198,7 @@ export function LivePresence({ lang }: LivePresenceProps) {
                                     initial={{ x: 20, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     exit={{ x: -20, opacity: 0 }}
-                                    className="text-sm font-medium text-emerald-400 flex items-center gap-2 truncate absolute inset-0"
+                                    className={cn("text-sm font-medium flex items-center gap-2 truncate absolute inset-0", colors.text)}
                                 >
                                     <img
                                         src={`https://flagcdn.com/w20/${currentEvent.code}.png`}
@@ -174,7 +218,7 @@ export function LivePresence({ lang }: LivePresenceProps) {
                                     exit={{ opacity: 0 }}
                                     className="absolute inset-0 flex items-center pl-1"
                                 >
-                                    <span className="text-xs sm:text-sm text-emerald-500/50 font-mono tracking-wider flex uppercase">
+                                    <span className={cn("text-xs sm:text-sm font-mono tracking-wider flex uppercase", colors.scanner)}>
                                         {"Scanning global...".split("").map((char, i) => (
                                             <motion.span
                                                 key={i}
@@ -189,7 +233,7 @@ export function LivePresence({ lang }: LivePresenceProps) {
                                     <motion.span
                                         animate={{ opacity: [0, 1, 0] }}
                                         transition={{ duration: 0.8, repeat: Infinity }}
-                                        className="w-1.5 h-3 bg-emerald-500/50 ml-1 block"
+                                        className={cn("w-1.5 h-3 ml-1 block", colors.bar)}
                                     />
                                 </motion.div>
                             )}

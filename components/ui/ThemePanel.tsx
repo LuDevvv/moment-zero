@@ -44,7 +44,7 @@ const themes = [
     { id: "aurora", color: "#A855F7", label: "Aurora", class: "theme-aurora" },
     { id: "starfield", color: "#F59E0B", label: "Starfield", class: "theme-starfield" },
     { id: "emerald", color: "#10B981", label: "Emerald", class: "theme-emerald" },
-    { id: "sunset", color: "#F43F5E", label: "Sunset", class: "theme-sunset" },
+    { id: "sunset", color: "#F97316", label: "Sunset", class: "theme-sunset" },
 ];
 
 export function ThemePanel({ t }: ThemePanelProps) {
@@ -79,6 +79,7 @@ export function ThemePanel({ t }: ThemePanelProps) {
         { id: "void", label: t.atmVoidGlow || "Void & Glow" },
         { id: "starfield", label: t.atmStarfield || "Starfield" },
         { id: "aurora", label: t.atmAurora || "Aurora" },
+        { id: "sunset", label: "Sunset" },
     ];
 
     const applyConfig = useCallback((themeId: string, atmId: string, typoId: string) => {
@@ -116,45 +117,138 @@ export function ThemePanel({ t }: ThemePanelProps) {
     }, [activeTheme, activeAtmosphere, activeTypography, applyConfig]);
 
     const [isPartyActive, setIsPartyActive] = useState(false);
+
     const triggerParty = () => {
-        if (isPartyActive) return;
-        setIsPartyActive(true);
-
-        const duration = 2000;
-        const end = Date.now() + duration;
-
+        // "Surprise Box" logic - varying effects
         const colors = [themes.find(t => t.id === activeTheme)?.color || '#ffffff', '#ffffff'];
 
-        (function frame() {
-            confetti({
-                particleCount: 3,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: colors,
-                shapes: ['circle', 'square', 'star'],
-                ticks: 200,
-                scalar: 1.2,
-                drift: 0.5
-            });
-            confetti({
-                particleCount: 3,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: colors,
-                shapes: ['circle', 'square', 'star'],
-                ticks: 200,
-                scalar: 1.2,
-                drift: -0.5
-            });
+        const runStandard = () => {
+            const end = Date.now() + 1000;
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors,
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors,
+                });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        };
 
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            } else {
-                setIsPartyActive(false);
+        const runSchoolPride = () => {
+            const end = Date.now() + 1000;
+            (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        };
+
+        const runFireworks = () => {
+            const duration = 2000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+            const interval: any = setInterval(function () {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors });
+                confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors });
+            }, 250);
+        };
+
+        const runRealistic = () => {
+            const count = 200;
+            const defaults = {
+                origin: { y: 0.7 }
+            };
+
+            function fire(particleRatio: number, opts: any) {
+                confetti({
+                    ...defaults,
+                    ...opts,
+                    particleCount: Math.floor(count * particleRatio),
+                    colors
+                });
             }
-        })();
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+        };
+
+        const runSnow = () => {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 1,
+                    startVelocity: 0,
+                    ticks: 200,
+                    origin: {
+                        x: Math.random(),
+                        // since particles fall down, skew start toward the top
+                        y: (Math.random() * 0.1) - 0.2
+                    },
+                    colors: ['#ffffff'],
+                    shapes: ['circle'],
+                    gravity: 0.6,
+                    scalar: 0.5,
+                    drift: 0
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        };
+
+        const runGalaxy = () => {
+            const defaults = { spread: 360, ticks: 100, gravity: 0, decay: 0.94, startVelocity: 30, shapes: ['star'], colors: ['#FFED00', '#FF0000', '#00FFFF', '#ffffff'] };
+
+            confetti({ ...defaults, particleCount: 40, scalar: 1.2, shapes: ['star'] });
+            confetti({ ...defaults, particleCount: 10, scalar: 0.75, shapes: ['circle'] });
+        };
+
+        const effects = [runStandard, runSchoolPride, runFireworks, runRealistic, runSnow, runGalaxy];
+        const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+
+        // Unlock button immediately or after short delay? Let's just run it. 
+        // We track 'active' just for the icon glow maybe?
+        setIsPartyActive(true);
+        setTimeout(() => setIsPartyActive(false), 500); // Quick toggle for feedback
+
+        randomEffect();
     };
 
     return (
@@ -229,6 +323,7 @@ export function ThemePanel({ t }: ThemePanelProps) {
                                                     if (theme.id === "aurora") setAtmosphere("aurora");
                                                     if (theme.id === "starfield") setAtmosphere("starfield");
                                                     if (theme.id === "dark-void") setAtmosphere("void");
+                                                    if (theme.id === "sunset") setAtmosphere("sunset");
                                                 }}
                                                 className={cn(
                                                     "w-10 h-10 rounded-full flex items-center justify-center transition-all relative ring-offset-2 ring-offset-[#050505]",

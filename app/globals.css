@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: var(--font-inter);
-  --font-display: var(--font-cormorant);
+  --font-display: var(--font-outfit);
   --font-mono-num: var(--font-space);
   --font-cinzel: var(--font-cinzel);
   --font-syne: var(--font-syne);
@@ -92,53 +92,58 @@
 
   /* Theme: Aurora */
   .theme-aurora {
-    --background: 260 40% 10%;
-    /* Deep Purple Base */
-    --surface: 260 40% 15%;
-    --primary: 180 100% 50%;
-    /* Cyan/Teal */
-    --accent: 280 100% 70%;
-    /* Pinkish Purple */
-    --glow-color: 180 100% 50%;
-    --ring: 180 100% 50%;
+    --background: 260 50% 14%;
+    /* Deep Rich Purple */
+    --surface: 260 50% 18%;
+    --primary: 270 90% 65%;
+    /* Electric Purple */
+    --accent: 300 100% 60%;
+    /* Magenta */
+    --glow-color: 270 90% 65%;
+    --ring: 270 90% 65%;
 
-    --foreground: 260 50% 98%;
-    --muted-foreground: 260 30% 70%;
+    --foreground: 270 20% 98%;
+    --muted-foreground: 270 20% 70%;
   }
 
   /* Theme: Starfield */
   .theme-starfield {
-    --background: 222 47% 5%;
-    /* Darker Blue/Black */
-    --surface: 222 47% 10%;
-    --primary: 45 100% 60%;
-    /* Gold/Star color */
-    --accent: 200 100% 60%;
-    /* Light Blue */
-    --glow-color: 45 100% 60%;
-    --ring: 45 100% 60%;
+    --background: 220 60% 12%;
+    /* Deep Cosmic Blue */
+    --surface: 220 60% 16%;
+    --primary: 40 100% 60%;
+    /* Bright Gold */
+    --accent: 190 100% 60%;
+    /* Cyan */
+    --glow-color: 40 100% 60%;
+    --ring: 40 100% 60%;
 
-    --foreground: 220 40% 98%;
+    --foreground: 220 20% 98%;
     --muted-foreground: 220 20% 70%;
   }
 
   /* Legacy Themes (Optional) */
   .theme-emerald {
-    --background: 160 40% 5%;
-    --surface: 160 40% 8%;
-    --primary: 150 70% 50%;
-    --accent: 140 70% 60%;
-    --glow-color: 150 70% 50%;
-    --ring: 150 70% 50%;
+    --background: 160 60% 10%;
+    /* Deep Forest Green */
+    --surface: 160 60% 14%;
+    --primary: 140 80% 60%;
+    /* Spring Green */
+    --accent: 170 80% 50%;
+    --glow-color: 140 80% 60%;
+    --ring: 140 80% 60%;
   }
 
   .theme-sunset {
-    --background: 10 30% 8%;
-    --surface: 10 30% 12%;
-    --primary: 15 90% 60%;
-    --accent: 35 90% 60%;
-    --glow-color: 15 90% 60%;
-    --ring: 10 90% 60%;
+    --background: 10 60% 12%;
+    /* Deep Red/Brown */
+    --surface: 10 60% 16%;
+    --primary: 20 100% 60%;
+    /* Orange */
+    --accent: 340 90% 60%;
+    /* Pink */
+    --glow-color: 20 100% 60%;
+    --ring: 20 100% 60%;
   }
 
   body {

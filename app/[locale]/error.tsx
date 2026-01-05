@@ -24,7 +24,7 @@ export default function Error({
     const t = (translations as any)[locale] || translations.en;
 
     return (
-        <div className="relative w-full h-[80vh] flex flex-col items-center justify-center p-4 overflow-hidden">
+        <div className="relative w-full h-screen flex flex-col items-center justify-center p-4 overflow-hidden">
             <BackgroundEffects />
             <div className="relative z-10 flex flex-col items-center text-center max-w-md mx-auto space-y-6">
                 <motion.div

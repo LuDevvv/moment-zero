@@ -75,8 +75,8 @@ export const useAppStore = create<AppState>()(
                 atmosphere: state.atmosphere,
                 typography: state.typography,
                 layout: state.layout,
-                // We might want to persist username for convenience, but not wish for privacy?
-                // For now, let's persist theme prefs.
+                username: state.username,
+                wish: state.wish,
             }),
         }
     )

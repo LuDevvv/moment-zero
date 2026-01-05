@@ -1,6 +1,7 @@
+"use client";
+
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LivePresence } from "@/components/ui/LivePresence";
 import dynamic from 'next/dynamic';
 
 const Timer = dynamic(() => import("@/components/countdown/Timer").then(mod => mod.Timer), {
@@ -11,12 +12,13 @@ const Timer = dynamic(() => import("@/components/countdown/Timer").then(mod => m
 interface CountdownViewProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     lang: any;
-    layout: "classic" | "minimal" | "boxed" | "wide";
-    targetYear: number;
-    onToggleView: () => void;
+    // Match prop names
+    onOpenCapsule?: () => void;
+    layout?: "classic" | "minimal" | "boxed" | "wide";
+    targetYear?: number;
 }
 
-export function CountdownView({ lang, layout, targetYear, onToggleView }: CountdownViewProps) {
+export function CountdownView({ lang, layout = "classic", targetYear = 2026, onOpenCapsule }: CountdownViewProps) {
     const formattedTitle = lang.yearBeginsIn ? lang.yearBeginsIn.replace("%s", targetYear.toString()) : `The Year ${targetYear} Begins In`;
 
     // Dynamic Phrase Logic
@@ -46,7 +48,7 @@ export function CountdownView({ lang, layout, targetYear, onToggleView }: Countd
 
 
             {/* Title & Description */}
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-4 mt-32">
                 <div className="flex items-center justify-center gap-3 text-primary/80">
                     <div className="h-px w-8 bg-current opacity-50" />
                     <h1 className="text-[14px] sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.4em] uppercase text-primary text-glow whitespace-nowrap">
@@ -75,17 +77,19 @@ export function CountdownView({ lang, layout, targetYear, onToggleView }: Countd
             </div>
 
             {/* Call to Action - In Flow */}
-            <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={onToggleView}
-                className="mt-4 md:mt-6 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white font-medium text-xs uppercase tracking-[0.2em] transition-all group overflow-hidden relative z-30"
-            >
-                <span className="relative z-10 group-hover:text-primary transition-colors">{lang.enterButton || "Open Time Capsule"}</span>
-                <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </motion.button>
+            {onOpenCapsule && (
+                <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={onOpenCapsule}
+                    className="mt-4 md:mt-6 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white font-medium text-xs uppercase tracking-[0.2em] transition-all group overflow-hidden relative z-30"
+                >
+                    <span className="relative z-10 group-hover:text-primary transition-colors">{lang.enterButton || "Open Time Capsule"}</span>
+                    <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </motion.button>
+            )}
         </motion.div>
     );
 }

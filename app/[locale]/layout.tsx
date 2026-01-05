@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Cormorant_Garamond, Space_Grotesk, Outfit, Cinzel, Syne } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import "../globals.css";
+
+import "@/app/globals.css";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -190,10 +190,9 @@ export default async function LocaleLayout({
                 />
             </head>
             <body
-                className="antialiased bg-background text-foreground transition-colors duration-300 h-full overflow-hidden"
+                className="antialiased bg-background text-foreground transition-colors duration-300 min-h-screen"
             >
                 {children}
-                <Analytics />
             </body>
         </html>
     );

@@ -11,8 +11,11 @@ interface TimerProps {
     onComplete?: () => void;
 }
 
+import { useAppStore } from "@/store/useAppStore";
+
 export function Timer({ labels, layout = "classic", onComplete }: TimerProps) {
     const { timeLeft } = useCountdown(onComplete);
+    const { typography } = useAppStore();
 
     if (!timeLeft) {
         // Return a consistent skeleton or spacer to prevent layout shift during hydration
@@ -31,8 +34,21 @@ export function Timer({ labels, layout = "classic", onComplete }: TimerProps) {
         isBoxed ? "gap-2 sm:gap-4 lg:gap-8" : ""
     );
 
+    const getFontVar = () => {
+        switch (typography) {
+            case 'mono': return 'var(--font-space)';
+            case 'sans': return 'var(--font-outfit)';
+            case 'epic': return 'var(--font-cinzel)';
+            case 'digital': return 'var(--font-syne)';
+            default: return 'var(--font-cormorant)';
+        }
+    };
+
     return (
-        <div className={containerClass}>
+        <div
+            className={containerClass}
+            style={{ "--font-display": getFontVar() } as React.CSSProperties}
+        >
             <DigitGroup value={timeLeft.d} label={labels.days} layout={layout} />
             <Separator layout={layout} />
             <DigitGroup value={timeLeft.h} label={labels.hours} layout={layout} />
@@ -105,14 +121,14 @@ function DigitGroup({ value, label, layout }: { value: number; label: string; la
 function SplitDigit({ char, layout }: { char: string; layout: string }) {
     const isBoxed = layout === "boxed";
 
-    // Adjust sizes based on layout
+    // Adjust sizes based on layout - SCALED DOWN for elegance
     const widthClass = isBoxed
-        ? "w-[9vw] sm:w-[8vw] md:w-[4rem] lg:w-[5rem] xl:w-[6rem]"
-        : "w-[14vw] sm:w-[10vw] md:w-[5rem] lg:w-[6rem] xl:w-[8rem]";
+        ? "w-[6vw] sm:w-[5vw] md:w-[3rem] lg:w-[3.5rem] xl:w-[4rem]"
+        : "w-[10vw] sm:w-[8vw] md:w-[3.5rem] lg:w-[4.5rem] xl:w-[5.5rem]";
 
     const textClass = isBoxed
-        ? "text-[12vw] sm:text-[9vw] md:text-[5rem] lg:text-[6rem] xl:text-[8rem]"
-        : "text-[18vw] sm:text-[13vw] md:text-[7rem] lg:text-[8rem] xl:text-[11rem]";
+        ? "text-[8vw] sm:text-[6vw] md:text-[3.5rem] lg:text-[4rem] xl:text-[5rem]"
+        : "text-[12vw] sm:text-[9vw] md:text-[6rem] lg:text-[7rem] xl:text-[9rem]";
 
     return (
         <div className={cn(

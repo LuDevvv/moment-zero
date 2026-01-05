@@ -23,6 +23,25 @@
     "hours": "Hours",
     "minutes": "Minutes",
     "seconds": "Seconds",
+    "landing": {
+      "heroTitle": "The moment before everything changes.",
+      "heroSubtitle": "A shared countdown to the future — create your moment, set your intention, and step into %s with meaning.",
+      "ctaPrimary": "Create your Moment",
+      "ctaSecondary": "See how it works",
+      "section1Title": "More than a countdown. It's a ritual.",
+      "section1Body": "MomentZero is a global New Year countdown designed to help you pause, reflect, and define what comes next.",
+      "section1Footer": "No accounts. No pressure. Just presence.",
+      "feature1Title": "Create a personal countdown",
+      "feature1Desc": "Your own moment, your own theme, your own pace.",
+      "feature2Title": "Set one meaningful intention",
+      "feature2Desc": "A wish, a goal, or a promise to yourself.",
+      "feature3Title": "Share it with the world",
+      "feature3Desc": "Your moment becomes a link — visual, emotional, and unique.",
+      "socialProofTitle": "Thousands of people around the world are waiting for %s together.",
+      "socialProofSubtitle": "People sharing this moment right now",
+      "finalCtaTitle": "Your future deserves a moment.",
+      "finalCtaButton": "Start my Moment"
+    },
     "liveWaiting": "Waiting",
     "liveEvents": {
       "locked": "Someone from {country} locked a wish",
@@ -100,7 +119,24 @@
       "Time brings all things to pass.",
       "He who controls the present, controls the past. He who controls the past, controls the future.",
       "The key is in not spending time, but in investing it."
-    ]
+    ],
+    "onboarding": {
+      "usernameTitle": "Claim your Identity",
+      "usernameDesc": "Your capsule needs a guardian.",
+      "continueButton": "Next: Sign It",
+      "backButton": "Back",
+      "reviewCapsule": "Review Capsule",
+      "sealPrivate": "Seal Privately",
+      "sealPublic": "Seal & Share",
+      "editButton": "Make Changes",
+      "previewTitle": "Your Legacy Awaits",
+      "previewDesc": "This moment will be locked until 2027.",
+      "sealButton": "Seal Capsule",
+      "sealAndShare": "Seal & Share"
+    },
+    "errors": {
+      "usernameTaken": "Username already taken."
+    }
   },
   "es": {
     "countdownTitle": "La cuenta regresiva hacia quien quieres ser.",
@@ -203,7 +239,24 @@
       "El tiempo hace que todo pase.",
       "Quien controla el presente, controla el pasado. Quien controla el pasado, controla el futuro.",
       "La clave no está en gastar tiempo, sino en invertirlo."
-    ]
+    ],
+    "onboarding": {
+      "usernameTitle": "Reclama tu Identidad",
+      "usernameDesc": "Tu cápsula necesita un guardián.",
+      "continueButton": "Siguiente: Firmar",
+      "backButton": "Atrás",
+      "reviewCapsule": "Revisar Cápsula",
+      "sealPrivate": "Sellar Privado",
+      "sealPublic": "Sellar y Compartir",
+      "editButton": "Hacer Cambios",
+      "previewTitle": "Tu Legado Espera",
+      "previewDesc": "Este momento estará bloqueado hasta 2027.",
+      "sealButton": "Sellar Cápsula",
+      "sealAndShare": "Sellar y Compartir"
+    },
+    "errors": {
+      "usernameTaken": "Nombre de usuario ya existe."
+    }
   },
   "fr": {
     "title": "Compte à rebours %s",

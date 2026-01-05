@@ -19,6 +19,9 @@
 
 # production
 /build
+/local-db
+/.local-db
+*.open-next
 
 # misc
 .DS_Store
@@ -42,3 +45,9 @@ next-env.d.ts
 
 # docs
 /docs
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo.open-next/

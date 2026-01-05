@@ -1,4 +1,4 @@
-import { HomeClient } from "@/components/HomeClient";
+import HomeClient from "@/components/HomeClient";
 import translations from "@/lib/translations.json";
 
 export function generateStaticParams() {
