@@ -24,7 +24,8 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
     const [isEditingCapsule, setIsEditingCapsule] = useState(false);
     const [username, setUsername] = useState(initialState?.username || "");
     const [isSending, setIsSending] = useState(false);
-    const [isSavedToDatabase, setIsSavedToDatabase] = useState(!!initialState); // Track if moment is saved to DB
+    const [isSavedToDatabase, setIsSavedToDatabase] = useState(!!initialState);
+    const [isPublicMoment, setIsPublicMoment] = useState(!!initialState?.isPublic); // Track privacy
 
     const targetYear = new Date().getFullYear() + 1;
 
@@ -133,6 +134,9 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
 
             // Auto-save since they clicked "Seal"
             const toastId = toast.loading("Sealing your capsule...");
+            const isPublic = data.isPublic ?? false; // Default to private if undefined
+            setIsPublicMoment(isPublic);
+
             try {
                 await saveMoment({
                     username: data.username,
@@ -140,9 +144,16 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                     theme,
                     atmosphere,
                     typography,
-                    targetYear
+                    targetYear,
+                    isPublic
                 });
-                toast.success("Capsule sealed anonymously", { id: toastId });
+
+                if (isPublic) {
+                    toast.success("Capsule sealed & ready to share", { id: toastId });
+                } else {
+                    toast.success("Capsule sealed anonymously", { id: toastId });
+                }
+
                 setIsSavedToDatabase(true); // Mark as saved to DB immediately
                 localStorage.setItem("mz-username", data.username);
                 localStorage.setItem("mz-wish", data.intention);
@@ -242,7 +253,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                                     subtitleText={lang.capsuleSubtitle || "What do you want to tell your future self?"}
                                     cancelText={isEditingCapsule ? "Cancel Edit" : (lang.returnToCountdown || "Return to Countdown")}
                                     copyLinkText={lang.copyLink || "Copy Link"}
-                                    showCopyLink={isSavedToDatabase} // Only show if saved to database
+                                    showCopyLink={isSavedToDatabase && isPublicMoment} // Only show if saved AND public
                                     legalDisclaimerText={lang.legalDisclaimer}
                                     termsText={lang.termsLink}
                                     onCopyLink={(user) => {

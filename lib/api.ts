@@ -6,6 +6,7 @@ export interface MomentData {
     atmosphere: string;
     typography: string;
     targetYear?: number;
+    isPublic?: boolean;
 }
 
 export async function saveMoment(data: MomentData) {

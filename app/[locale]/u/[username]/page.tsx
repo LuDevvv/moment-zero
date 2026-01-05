@@ -61,6 +61,11 @@ export default async function UserMomentPage({ params }: { params: Promise<{ loc
         return notFound();
     }
 
+    // Privacy Check: If moment is private and not demo, show 404
+    if (!momentData.isPublic && momentData.username !== 'demo') {
+        return notFound();
+    }
+
     // Custom Public View Layout
     return (
         <main className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-x-hidden">

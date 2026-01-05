@@ -6,7 +6,7 @@ import { Check, Sparkles, Lock, Share2 } from "lucide-react";
 import { Timer } from "@/components/countdown/Timer";
 
 interface OnboardingFlowProps {
-    onComplete: (data: { theme: string; intention: string; username?: string }) => void;
+    onComplete: (data: { theme: string; intention: string; username?: string; isPublic?: boolean }) => void;
     lang: any;
     targetYear: number;
     onThemeSelect?: (themeId: string) => void;
@@ -312,7 +312,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
                 {/* Action Interface */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl z-20">
                     <button
-                        onClick={() => onComplete({ theme: selectedTheme, intention, username })}
+                        onClick={() => onComplete({ theme: selectedTheme, intention, username, isPublic: false })}
                         className="group relative flex items-center gap-4 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all text-left"
                     >
                         <div className="p-3 rounded-full bg-black/50 border border-white/10 group-hover:bg-white/20 transition-colors">
@@ -325,7 +325,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
                     </button>
 
                     <button
-                        onClick={() => onComplete({ theme: selectedTheme, intention, username })}
+                        onClick={() => onComplete({ theme: selectedTheme, intention, username, isPublic: true })}
                         className="group relative flex items-center gap-4 p-5 rounded-2xl bg-white text-black hover:bg-white/90 border border-transparent shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all text-left transform hover:scale-[1.02]"
                     >
                         <div className="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-white transition-colors">

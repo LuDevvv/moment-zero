@@ -14,6 +14,7 @@ const CreateMomentSchema = z.object({
     typography: z.string(),
     message: z.string().max(280).optional(),
     targetYear: z.number().int().min(2025).max(2100).default(nextYear),
+    isPublic: z.boolean().optional().default(false),
 });
 
 export async function POST(req: Request) {
@@ -55,7 +56,7 @@ export async function POST(req: Request) {
             userId: userId,
             createdAt: new Date(),
             updatedAt: new Date(),
-            isPublic: true
+            isPublic: data.isPublic
         });
 
         return NextResponse.json({ success: true, username: data.username });
@@ -78,6 +79,7 @@ const UpdateMomentSchema = z.object({
     theme: z.string().optional(),
     atmosphere: z.string().optional(),
     typography: z.string().optional(),
+    isPublic: z.boolean().optional(),
 });
 
 export async function PUT(req: Request) {
@@ -102,6 +104,7 @@ export async function PUT(req: Request) {
                     theme: data.theme,
                     atmosphere: data.atmosphere,
                     typography: data.typography,
+                    isPublic: data.isPublic,
                     updatedAt: new Date(),
                 })
                 .where(eq(moments.id, user.moments[0].id));
@@ -116,6 +119,7 @@ export async function PUT(req: Request) {
                 targetYear: nextYear,
                 createdAt: new Date(),
                 updatedAt: new Date(),
+                isPublic: data.isPublic ?? false
             });
         }
 
