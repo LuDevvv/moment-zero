@@ -22,6 +22,19 @@
             "database_id": "c35823f9-f1a1-4848-84f6-06a04b873a62"
         }
     ],
+    "routes": [
+        {
+            "pattern": "momentzero.app",
+            "custom_domain": true
+        },
+        {
+            "pattern": "www.momentzero.app",
+            "custom_domain": true
+        }
+    ],
+    "vars": {
+        "NEXT_PUBLIC_APP_URL": "https://momentzero.app"
+    },
     "observability": {
         "enabled": true
     }

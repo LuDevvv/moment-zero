@@ -19,9 +19,8 @@
 
 # production
 /build
-/local-db
-/.local-db
 *.open-next
+.wrangler
 
 # misc
 .DS_Store
