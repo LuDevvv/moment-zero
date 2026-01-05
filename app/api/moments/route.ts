@@ -36,27 +36,26 @@ export async function POST(req: Request) {
         const userId = crypto.randomUUID();
         const momentId = crypto.randomUUID();
 
-        // Transaction for atomicity
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        await (db as any).transaction(async (tx: any) => {
-            await tx.insert(users).values({
-                id: userId,
-                username: data.username,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-            });
-            await tx.insert(moments).values({
-                id: momentId,
-                theme: data.theme,
-                atmosphere: data.atmosphere,
-                typography: data.typography,
-                message: data.message || "",
-                targetYear: data.targetYear,
-                userId: userId,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                isPublic: true
-            });
+        // Insert User first
+        await db.insert(users).values({
+            id: userId,
+            username: data.username,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+
+        // Insert Moment
+        await db.insert(moments).values({
+            id: momentId,
+            theme: data.theme,
+            atmosphere: data.atmosphere,
+            typography: data.typography,
+            message: data.message || "",
+            targetYear: data.targetYear,
+            userId: userId,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            isPublic: true
         });
 
         return NextResponse.json({ success: true, username: data.username });
