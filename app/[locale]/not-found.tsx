@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft } from "lucide-react";
-import "./globals.css";
+import "@/app/globals.css";
 import { usePathname } from "next/navigation";
 import translations from "@/lib/translations.json";
 
