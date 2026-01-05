@@ -287,7 +287,7 @@ export function ThemePanel({ t }: ThemePanelProps) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px]"
+                            className="fixed inset-0 z-55 bg-black/20 backdrop-blur-[2px]"
                             onClick={() => setIsOpen(false)}
                         />
                         <motion.div
@@ -295,7 +295,7 @@ export function ThemePanel({ t }: ThemePanelProps) {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "100%", opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed top-0 right-0 h-full w-80 sm:w-96 glass-panel border-l border-white/10 bg-[#050505]/80 backdrop-blur-xl z-50 flex flex-col shadow-2xl overflow-y-auto"
+                            className="fixed top-0 right-0 h-full w-80 sm:w-96 glass-panel border-l border-white/10 bg-[#050505]/80 backdrop-blur-xl z-60 flex flex-col shadow-2xl overflow-y-auto"
                         >
                             {/* Header */}
                             <div className="p-6 pb-2 flex justify-between items-center border-b border-white/5">

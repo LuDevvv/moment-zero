@@ -79,25 +79,45 @@ export function LivePresence({ lang }: LivePresenceProps) {
         return template.replace("{country}", countryName);
     };
 
-    // Initialize avatars
+    // Initialize avatars with high-quality realistic images
     useEffect(() => {
+        // Use a fixed seed-like approach or just Unsplash Source for realism
+        const seeds = [100, 200, 300];
+        setAvatars(seeds.map(s => `https://images.unsplash.com/photo-${s}?auto=format&fit=crop&w=64&h=64&q=80`));
+        // Actually lets use specific IDs that look like people to avoid 404s
         setAvatars([
-            `https://i.pravatar.cc/150?u=${Math.random()}`,
-            `https://i.pravatar.cc/150?u=${Math.random()}`,
-            `https://i.pravatar.cc/150?u=${Math.random()}`
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64",
+            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64",
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=64&h=64"
         ]);
     }, []);
 
-    // Simulate Live Activity
+    // Simulate Live Activity - Smoother but Wider Oscillation
     useEffect(() => {
-        const interval = setInterval(() => {
-            // Randomly increment count
-            if (Math.random() > 0.6) {
-                setCount(prev => prev + Math.floor(Math.random() * 3) + 1);
-            }
+        // Simular "Tendencia" para que no salte aleatoriamente, sino que tenga olas
+        let trend = Math.random() > 0.5 ? 1 : -1;
 
-            // Randomly trigger an "event"
-            if (Math.random() > 0.75) {
+        const interval = setInterval(() => {
+            setCount(prev => {
+                // Change direction randomly sometimes
+                if (Math.random() > 0.8) trend *= -1;
+
+                // Variación normal: entre 5 y 25 personas entran/salen
+                // Trend factor: empuja hacia arriba o abajo
+                const change = Math.floor(Math.random() * 20) + (trend * Math.floor(Math.random() * 35));
+
+                let next = prev + change;
+
+                // Si se acerca a los límites, forzar cambio de tendencia
+                if (next > 15500) trend = -1;
+                if (next < 2500) trend = 1;
+
+                // Keep it within wider credibility range
+                return Math.max(2100, Math.min(15900, next));
+            });
+
+            // Randomly trigger an "event" less frequently
+            if (Math.random() > 0.8) {
                 const def = eventDefinitions[Math.floor(Math.random() * eventDefinitions.length)];
 
                 setCurrentEvent({
@@ -105,18 +125,21 @@ export function LivePresence({ lang }: LivePresenceProps) {
                     text: formatEvent(def.code, def.type)
                 });
 
-                // Update one avatar
+                // Update one avatar with a new random Unsplash portrait
+                // Using random sig to force new image fetch
+                const randomId = Math.floor(Math.random() * 1000);
                 setAvatars(prev => {
                     const newAvatars = [...prev];
                     newAvatars.pop(); // Remove last
-                    newAvatars.unshift(`https://i.pravatar.cc/150?u=${Math.random()}`); // Add new to front
+                    // Fallback to randomuser.me for high availability diversity or stick to unsplash keywords
+                    newAvatars.unshift(`https://randomuser.me/api/portraits/${Math.random() > 0.5 ? 'women' : 'men'}/${Math.floor(Math.random() * 99)}.jpg`);
                     return newAvatars;
                 });
 
                 // Clear event after 5 seconds for better readability
                 setTimeout(() => setCurrentEvent(null), 5000);
             }
-        }, 4000);
+        }, 3000); // Faster tick for smoother feeling, but smaller changes
 
         return () => clearInterval(interval);
     }, [eventDefinitions, t, countries]);
@@ -219,7 +242,7 @@ export function LivePresence({ lang }: LivePresenceProps) {
                                     className="absolute inset-0 flex items-center pl-1"
                                 >
                                     <span className={cn("text-xs sm:text-sm font-mono tracking-wider flex uppercase", colors.scanner)}>
-                                        {"Scanning global...".split("").map((char, i) => (
+                                        {(lang?.scanningGlobal || "Scanning global...").split("").map((char: string, i: number) => (
                                             <motion.span
                                                 key={i}
                                                 initial={{ opacity: 0 }}
