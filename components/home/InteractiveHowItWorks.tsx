@@ -3,18 +3,24 @@
 import { Globe, Palette, Sparkles, Lock } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export function InteractiveHowItWorks() {
+interface InteractiveHowItWorksProps {
+    lang?: any;
+}
+
+export function InteractiveHowItWorks({ lang }: InteractiveHowItWorksProps) {
     const [activeColor, setActiveColor] = useState<string | null>(null);
+
+    const t = lang?.landing || {};
 
     return (
         <section className="w-full px-4 py-24 md:py-32">
             <div className="max-w-7xl mx-auto flex flex-col gap-16">
                 <div className="text-center space-y-6 max-w-2xl mx-auto">
                     <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight tracking-tight">
-                        Create your moment.
+                        {t.howItWorksTitle || "Create your moment."}
                     </h2>
                     <p className="text-muted-foreground text-lg md:text-xl font-light">
-                        Simple, beautiful tools to make 2026 arrive exactly how you want it.
+                        {t.howItWorksSubtitle || "Simple, beautiful tools to make 2026 arrive exactly how you want it."}
                     </p>
                 </div>
 
@@ -33,8 +39,8 @@ export function InteractiveHowItWorks() {
                                     <Palette strokeWidth={1.5} className="w-7 h-7" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-medium text-white">Choose your Vibe</h3>
-                                    <p className="text-muted-foreground leading-relaxed font-light">Set the atmosphere. From calm voids to radiant auroras.</p>
+                                    <h3 className="text-2xl font-medium text-white">{t.featureVibeTitle || "Choose your Vibe"}</h3>
+                                    <p className="text-muted-foreground leading-relaxed font-light">{t.featureVibeDesc || "Set the atmosphere. From calm voids to radiant auroras."}</p>
                                 </div>
                             </div>
 
@@ -47,12 +53,12 @@ export function InteractiveHowItWorks() {
                                 <button
                                     onMouseEnter={() => setActiveColor('purple')}
                                     onMouseLeave={() => setActiveColor(null)}
-                                    className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-fuchsia-400 shadow-lg ring-1 ring-white/20 hover:scale-110 transition-transform"
+                                    className="w-12 h-12 rounded-full bg-linear-to-tr from-purple-600 to-fuchsia-400 shadow-lg ring-1 ring-white/20 hover:scale-110 transition-transform"
                                 />
                                 <button
                                     onMouseEnter={() => setActiveColor('orange')}
                                     onMouseLeave={() => setActiveColor(null)}
-                                    className="w-12 h-12 rounded-full bg-gradient-to-tr from-orange-600 to-amber-400 shadow-lg ring-1 ring-white/20 hover:scale-110 transition-transform"
+                                    className="w-12 h-12 rounded-full bg-linear-to-tr from-orange-600 to-amber-400 shadow-lg ring-1 ring-white/20 hover:scale-110 transition-transform"
                                 />
                             </div>
                         </div>
@@ -68,14 +74,14 @@ export function InteractiveHowItWorks() {
                                     <Sparkles strokeWidth={1.5} className="w-7 h-7" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-medium text-white">Set Your Intention</h3>
-                                    <p className="text-muted-foreground leading-relaxed font-light">Lock a wish for the future. Sealed safely until the moment arrives.</p>
+                                    <h3 className="text-2xl font-medium text-white">{t.featureIntentionTitle || "Set Your Intention"}</h3>
+                                    <p className="text-muted-foreground leading-relaxed font-light">{t.featureIntentionDesc || "Lock a wish for the future. Sealed safely until the moment arrives."}</p>
                                 </div>
                             </div>
 
                             <div className="mt-auto relative h-24 flex items-center justify-center">
                                 <div className="w-full bg-white/5 rounded-xl p-4 border border-white/5 backdrop-blur-sm">
-                                    <TypingAnimation />
+                                    <TypingAnimation sealedText={lang?.sealedStatus || "Sealed"} />
                                 </div>
                             </div>
                         </div>
@@ -91,8 +97,8 @@ export function InteractiveHowItWorks() {
                                     <Globe strokeWidth={1.5} className="w-7 h-7" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-medium text-white">Sync with the World</h3>
-                                    <p className="text-muted-foreground leading-relaxed font-light">Join a living map of humanity. Thousands waiting together in real-time.</p>
+                                    <h3 className="text-2xl font-medium text-white">{t.featureSyncTitle || "Sync with the World"}</h3>
+                                    <p className="text-muted-foreground leading-relaxed font-light">{t.featureSyncDesc || "Join a living map of humanity. Thousands waiting together in real-time."}</p>
                                 </div>
                             </div>
 
@@ -113,7 +119,7 @@ export function InteractiveHowItWorks() {
     );
 }
 
-function TypingAnimation() {
+function TypingAnimation({ sealedText }: { sealedText: string }) {
     const [step, setStep] = useState(0);
 
     useEffect(() => {
@@ -149,7 +155,7 @@ function TypingAnimation() {
         return (
             <div className="flex flex-col items-center gap-2 text-emerald-400 animate-scale-in">
                 <Lock className="w-5 h-5" />
-                <span className="text-xs uppercase tracking-widest font-medium">Sealed</span>
+                <span className="text-xs uppercase tracking-widest font-medium">{sealedText}</span>
             </div>
         );
     }
