@@ -213,4 +213,21 @@
     padding-bottom: 0.2em;
     transform: translateY(-0.05em);
   }
+
+  /* Fixed Brand Typography (Ignores User Theme) */
+  .font-brand-display {
+    font-family: var(--font-outfit), sans-serif !important;
+  }
+
+  .font-brand-serif {
+    font-family: var(--font-cormorant), serif !important;
+  }
+
+  .font-brand-mono {
+    font-family: var(--font-space), monospace !important;
+  }
+
+  .font-brand-body {
+    font-family: var(--font-inter), sans-serif !important;
+  }
 }
