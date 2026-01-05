@@ -12,6 +12,8 @@
     "db:migrate:prod": "wrangler d1 migrations apply DB --remote",
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
     "db:studio": "drizzle-kit studio",
+    "db:push:local": "drizzle-kit push",
+    "db:reset:local": "rm -f local-db/moment-zero.sqlite && npm run db:push:local",
     "pages:build": "npx @cloudflare/next-on-pages@1"
   },
   "dependencies": {

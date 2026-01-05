@@ -1,8 +1,10 @@
-import Database from 'better-sqlite3';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import * as schema from './schema';
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import Database from "better-sqlite3";
+import path from "path";
+import * as schema from "./schema";
 
-export function getLocalDb(path: string) {
-    const sqlite = new Database(path);
+export function getLocalDb(dbPathStr: string) {
+    const dbPath = path.resolve(dbPathStr);
+    const sqlite = new Database(dbPath);
     return drizzle(sqlite, { schema });
 }

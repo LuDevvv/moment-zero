@@ -21,6 +21,7 @@
 /build
 *.open-next
 .wrangler
+/local-db
 
 # misc
 .DS_Store
