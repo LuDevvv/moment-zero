@@ -11,9 +11,32 @@
     "sending": "Sealing...",
     "settings": "Personalize",
     "theme": "Theme",
+    "themeData": {
+      "dark-void": {
+        "name": "Void",
+        "desc": "Deep. Calm. Infinite."
+      },
+      "sunset": {
+        "name": "Sunset",
+        "desc": "Warm. Passionate. Alive."
+      },
+      "aurora": {
+        "name": "Aurora",
+        "desc": "Mystical. Serene. Flowing."
+      },
+      "starfield": {
+        "name": "Starfield",
+        "desc": "Cosmic. Electric. Bright."
+      }
+    },
     "atmosphere": "Atmosphere",
     "typography": "Typography",
     "saveConfig": "Save Configuration",
+    "copyLink": "Copy Link",
+    "scanningGlobal": "Scanning Global...",
+    "legalDisclaimer": "By sealing this moment, you agree to our {terms} and accept the use of cookies to preserve your legacy across time.",
+    "termsLink": "Terms",
+    "toastCopied": "Link copied to clipboard",
     "limitMessage": "Free version includes one wish. You can always unlock more later.",
     "postCreate": "Your moment is alive. Share it or keep it close.",
     "premiumTeaserTitle": "Want this moment to last?",
@@ -24,24 +47,34 @@
     "minutes": "Minutes",
     "seconds": "Seconds",
     "landing": {
-      "heroTitle": "The moment before everything changes.",
+      "heroTitlePart1": "The ",
+      "heroTitleHighlight": "moment",
+      "heroTitlePart2": " before everything changes.",
       "heroSubtitle": "A shared countdown to the future — create your moment, set your intention, and step into %s with meaning.",
       "ctaPrimary": "Create your Moment",
       "ctaSecondary": "See how it works",
-      "section1Title": "More than a countdown. It's a ritual.",
-      "section1Body": "MomentZero is a global New Year countdown designed to help you pause, reflect, and define what comes next.",
-      "section1Footer": "No accounts. No pressure. Just presence.",
-      "feature1Title": "Create a personal countdown",
-      "feature1Desc": "Your own moment, your own theme, your own pace.",
-      "feature2Title": "Set one meaningful intention",
-      "feature2Desc": "A wish, a goal, or a promise to yourself.",
-      "feature3Title": "Share it with the world",
-      "feature3Desc": "Your moment becomes a link — visual, emotional, and unique.",
-      "socialProofTitle": "Thousands of people around the world are waiting for %s together.",
+      "howItWorksTitle": "Create your moment.",
+      "howItWorksSubtitle": "Simple, beautiful tools to make 2026 arrive exactly how you want it.",
+      "featureVibeTitle": "Choose your Vibe",
+      "featureVibeDesc": "Set the atmosphere. From calm voids to radiant auroras.",
+      "featureIntentionTitle": "Set Your Intention",
+      "featureIntentionDesc": "Lock a wish for the future. Sealed safely until the moment arrives.",
+      "featureSyncTitle": "Sync with the World",
+      "featureSyncDesc": "Join a living map of humanity. Thousands waiting together in real-time.",
       "socialProofSubtitle": "People sharing this moment right now",
       "finalCtaTitle": "Your future deserves a moment.",
-      "finalCtaButton": "Start my Moment"
+      "finalCtaButton": "Start my Moment",
+      "manifestoTitle": "Not just a timer. A promise to yourself.",
+      "manifestoBody": "In a fast-paced world, we rarely stop to set an intention. Moment Zero is a sacred digital ritual.",
+      "statSynced": "Synchronized",
+      "statWorldwide": "Worldwide",
+      "statSealed": "Sealed",
+      "statValueGlobalTime": "Global Time",
+      "statValueConnected": "Connected",
+      "statValueSealedUntil": "Until %s"
     },
+    "sealedUntil": "Sealed until %s",
+    "sealedStatus": "Sealed",
     "liveWaiting": "Waiting",
     "liveEvents": {
       "locked": "Someone from {country} locked a wish",
@@ -121,6 +154,19 @@
       "The key is in not spending time, but in investing it."
     ],
     "onboarding": {
+      "title1": "The clock is ticking.",
+      "subtitle1": "Your moment is approaching.",
+      "enterCta": "Enter",
+      "themeTitle": "How does your future feel?",
+      "themeDesc": "Select an atmosphere to set the tone.",
+      "intentionTitle": "Make it last.",
+      "intentionDesc": "What is your single most important hope for %s?",
+      "intentionPlaceholder": "I will...",
+      "suggestions": [
+        "Find my peace",
+        "Build something new",
+        "Love fearlessly"
+      ],
       "usernameTitle": "Claim your Identity",
       "usernameDesc": "Your capsule needs a guardian.",
       "continueButton": "Next: Sign It",
@@ -150,9 +196,32 @@
     "sending": "Sellando...",
     "settings": "Personalizar",
     "theme": "Tema",
+    "themeData": {
+      "dark-void": {
+        "name": "Vacío",
+        "desc": "Profundo. Calma. Infinito."
+      },
+      "sunset": {
+        "name": "Atardecer",
+        "desc": "Cálido. Pasión. Vivo."
+      },
+      "aurora": {
+        "name": "Aurora",
+        "desc": "Místico. Sereno. Fluido."
+      },
+      "starfield": {
+        "name": "Estelar",
+        "desc": "Cósmico. Eléctrico. Brillante."
+      }
+    },
     "atmosphere": "Atmósfera",
     "typography": "Tipografía",
     "saveConfig": "Guardar Configuración",
+    "copyLink": "Copiar Enlace",
+    "scanningGlobal": "Escaneo Global...",
+    "legalDisclaimer": "Al sellar este momento, aceptas nuestros {terms} y el uso de cookies para preservar tu legado en el tiempo.",
+    "termsLink": "Términos",
+    "toastCopied": "Enlace copiado al portapapeles",
     "limitMessage": "La versión gratuita incluye un solo deseo. Más adelante podrás guardar más.",
     "postCreate": "Tu momento ya existe. Compártelo o guárdalo para ti.",
     "premiumTeaserTitle": "¿Quieres que este momento perdure?",
@@ -240,7 +309,49 @@
       "Quien controla el presente, controla el pasado. Quien controla el pasado, controla el futuro.",
       "La clave no está en gastar tiempo, sino en invertirlo."
     ],
+    "landing": {
+      "heroTitlePart1": "El ",
+      "heroTitleHighlight": "momento",
+      "heroTitlePart2": " antes de que todo cambie.",
+      "heroSubtitle": "Una cuenta regresiva compartida hacia el futuro: crea tu momento, establece tu intención y entra en el %s con significado.",
+      "ctaPrimary": "Crea tu Momento",
+      "ctaSecondary": "Mira cómo funciona",
+      "howItWorksTitle": "Crea tu momento.",
+      "howItWorksSubtitle": "Herramientas simples y hermosas para recibir el 2026 exactamente como quieres.",
+      "featureVibeTitle": "Elige tu Vibra",
+      "featureVibeDesc": "Configura la atmósfera. Desde vacíos tranquilos hasta auroras radiantes.",
+      "featureIntentionTitle": "Define tu Intención",
+      "featureIntentionDesc": "Guarda un deseo para el futuro. Sellado de forma segura hasta que llegue el momento.",
+      "featureSyncTitle": "Sincroniza con el Mundo",
+      "featureSyncDesc": "Únete a un mapa vivo de la humanidad. Miles esperando juntos en tiempo real.",
+      "socialProofSubtitle": "Personas compartiendo este momento ahora mismo",
+      "finalCtaTitle": "Tu futuro merece un momento.",
+      "finalCtaButton": "Comenzar mi Momento",
+      "manifestoTitle": "No es solo un temporizador. Una promesa a ti mismo.",
+      "manifestoBody": "En un mundo acelerado, rara vez nos detenemos a establecer una intención. Moment Zero es un ritual digital sagrado.",
+      "statSynced": "Sincronizado",
+      "statWorldwide": "Mundial",
+      "statSealed": "Sellado",
+      "statValueGlobalTime": "Tiempo Global",
+      "statValueConnected": "Conectado",
+      "statValueSealedUntil": "Hasta %s"
+    },
+    "sealedUntil": "Sellado hasta %s",
+    "sealedStatus": "Sellado",
     "onboarding": {
+      "title1": "El reloj avanza.",
+      "subtitle1": "Tu momento se acerca.",
+      "enterCta": "Entrar",
+      "themeTitle": "¿Cómo se siente tu futuro?",
+      "themeDesc": "Elige una atmósfera para marcar el tono.",
+      "intentionTitle": "Haz que perdure.",
+      "intentionDesc": "¿Cuál es tu esperanza más importante para el %s?",
+      "intentionPlaceholder": "Yo voy a...",
+      "suggestions": [
+        "Encontrar mi paz",
+        "Construir algo nuevo",
+        "Amar sin miedo"
+      ],
       "usernameTitle": "Reclama tu Identidad",
       "usernameDesc": "Tu cápsula necesita un guardián.",
       "continueButton": "Siguiente: Firmar",
@@ -272,6 +383,24 @@
     "partyMode": "Mode Fête",
     "settings": "Design d'Expérience",
     "theme": "Thème Couleur",
+    "themeData": {
+      "dark-void": {
+        "name": "Vide",
+        "desc": "Profond. Calme. Infini."
+      },
+      "sunset": {
+        "name": "Coucher de soleil",
+        "desc": "Chaud. Passionné. Vivant."
+      },
+      "aurora": {
+        "name": "Aurore",
+        "desc": "Mystique. Serein. Fluide."
+      },
+      "starfield": {
+        "name": "Champ d'étoiles",
+        "desc": "Cosmique. Électrique. Lumineux."
+      }
+    },
     "blur": "Flou d'Ambiance",
     "glow": "Lueur Néon",
     "countdownTitle": "Le compte à rebours vers qui vous voulez devenir.",
@@ -284,6 +413,11 @@
     "atmosphere": "Atmosphère",
     "typography": "Typographie",
     "saveConfig": "Enregistrer la configuration",
+    "copyLink": "Copier le lien",
+    "scanningGlobal": "Scan Global...",
+    "legalDisclaimer": "En scellant ce moment, vous acceptez nos {terms} et l'utilisation de cookies pour préserver votre héritage dans le temps.",
+    "termsLink": "Conditions",
+    "toastCopied": "Lien copié dans le presse-papiers",
     "limitMessage": "La version gratuite comprend un vœu. Vous pourrez toujours en débloquer plus tard.",
     "postCreate": "Votre moment est vivant. Partagez-le ou gardez-le.",
     "premiumTeaserTitle": "Vous voulez que ce moment dure ?",
@@ -340,6 +474,54 @@
     "notFoundTitle": "Moment Perdu dans le Temps",
     "notFoundMessage": "La chronologie demandée n'a pas pu être trouvée.",
     "returnHome": "Retour à l'Accueil",
+    "sealedUntil": "Scellé jusqu'en %s",
+    "sealedStatus": "Scellé",
+    "onboarding": {
+      "title1": "L'horloge tourne.",
+      "subtitle1": "Votre moment approche.",
+      "enterCta": "Entrer",
+      "themeTitle": "Comment se sent votre futur ?",
+      "themeDesc": "Sélectionnez une atmosphère pour donner le ton.",
+      "intentionTitle": "Faites en sorte que ça dure.",
+      "intentionDesc": "Quel est votre espoir le plus important pour %s ?",
+      "intentionPlaceholder": "Je vais...",
+      "suggestions": [
+        "Trouver ma paix",
+        "Construire du nouveau",
+        "Aimer sans peur"
+      ],
+      "usernameTitle": "Revendiquez votre Identité",
+      "usernameDesc": "Votre capsule a besoin d'un gardien.",
+      "continueButton": "Suivant : Signer",
+      "backButton": "Retour",
+      "reviewCapsule": "Revoir la Capsule",
+      "sealPrivate": "Sceller en Privé",
+      "sealPublic": "Sceller & Partager",
+      "editButton": "Modifier",
+      "previewTitle": "Votre Héritage Attend",
+      "previewDesc": "Ce moment sera verrouillé jusqu'en 2027.",
+      "sealButton": "Sceller",
+      "sealAndShare": "Sceller & Partager"
+    },
+    "landing": {
+      "heroTitlePart1": "Le ",
+      "heroTitleHighlight": "moment",
+      "heroTitlePart2": " avant que tout change.",
+      "heroSubtitle": "Un compte à rebours partagé vers le futur — créez votre moment, définissez votre intention et entrez dans %s avec sens.",
+      "ctaPrimary": "Créez votre Moment",
+      "ctaSecondary": "Comment ça marche",
+      "howItWorksTitle": "Créez votre moment.",
+      "howItWorksSubtitle": "Des outils simples et beaux pour que 2026 arrive exactement comme vous le souhaitez.",
+      "featureVibeTitle": "Choisissez votre Ambiance",
+      "featureVibeDesc": "Définissez l'atmosphère. Du calme vide aux aurores rayonnantes.",
+      "featureIntentionTitle": "Définissez Votre Intention",
+      "featureIntentionDesc": "Verrouillez un vœu pour le futur. Scellé en toute sécurité jusqu'à l'arrivée du moment.",
+      "featureSyncTitle": "Synchronisez avec le Monde",
+      "featureSyncDesc": "Rejoignez une carte vivante de l'humanité. Des milliers attendent ensemble en temps réel.",
+      "socialProofSubtitle": "Des gens partagent ce moment maintenant",
+      "finalCtaTitle": "Votre futur mérite un moment.",
+      "finalCtaButton": "Commencer mon Moment"
+    },
     "dynamicPhrases": [
       "Le temps est la monnaie de votre vie.",
       "L'avenir appartient à ceux qui croient à la beauté de leurs rêves.",
@@ -377,6 +559,24 @@
     "partyMode": "Party-Modus",
     "settings": "Erlebnisdesign",
     "theme": "Farbthema",
+    "themeData": {
+      "dark-void": {
+        "name": "Leere",
+        "desc": "Tief. Ruhig. Unendlich."
+      },
+      "sunset": {
+        "name": "Sonnenuntergang",
+        "desc": "Warm. Leidenschaftlich. Lebendig."
+      },
+      "aurora": {
+        "name": "Aurora",
+        "desc": "Mystisch. Gelassen. Fließend."
+      },
+      "starfield": {
+        "name": "Sternenfeld",
+        "desc": "Kosmisch. Elektrisch. Hell."
+      }
+    },
     "blur": "Atmosphäre Unschärfe",
     "glow": "Neonleuchten",
     "countdownTitle": "Der Countdown zu dem, der du sein willst.",
@@ -389,6 +589,11 @@
     "atmosphere": "Atmosphäre",
     "typography": "Typografie",
     "saveConfig": "Konfiguration speichern",
+    "copyLink": "Link kopieren",
+    "scanningGlobal": "Globaler Scan...",
+    "legalDisclaimer": "Durch das Versiegeln dieses Moments stimmen Sie unseren {terms} zu und akzeptieren die Verwendung von Cookies.",
+    "termsLink": "Bedingungen",
+    "toastCopied": "Link in die Zwischenablage kopiert",
     "limitMessage": "Kostenlose Version enthält einen Wunsch.",
     "postCreate": "Dein Moment lebt. Teile ihn oder behalte ihn.",
     "premiumTeaserTitle": "Soll dieser Moment dauern?",
@@ -445,6 +650,54 @@
     "notFoundTitle": "Moment in der Zeit Verloren",
     "notFoundMessage": "Die angeforderte Zeitlinie konnte nicht gefunden werden.",
     "returnHome": "Zurück zur Startseite",
+    "sealedUntil": "Versiegelt bis %s",
+    "sealedStatus": "Versiegelt",
+    "onboarding": {
+      "title1": "Die Uhr tickt.",
+      "subtitle1": "Dein Moment naht.",
+      "enterCta": "Eintreten",
+      "themeTitle": "Wie fühlt sich deine Zukunft an?",
+      "themeDesc": "Wähle eine Atmosphäre, um den Ton anzugeben.",
+      "intentionTitle": "Mach es dauerhaft.",
+      "intentionDesc": "Was ist deine wichtigste Hoffnung für %s?",
+      "intentionPlaceholder": "Ich werde...",
+      "suggestions": [
+        "Meinen Frieden finden",
+        "Etwas Neues bauen",
+        "Furchtlos lieben"
+      ],
+      "usernameTitle": "Beanspruche deine Identität",
+      "usernameDesc": "Deine Kapsel braucht einen Wächter.",
+      "continueButton": "Weiter: Unterschreiben",
+      "backButton": "Zurück",
+      "reviewCapsule": "Kapsel überprüfen",
+      "sealPrivate": "Privat Versiegeln",
+      "sealPublic": "Versiegeln & Teilen",
+      "editButton": "Ändern",
+      "previewTitle": "Dein Erbe Erwartet Dich",
+      "previewDesc": "Dieser Moment wird bis 2027 gesperrt sein.",
+      "sealButton": "Versiegeln",
+      "sealAndShare": "Versiegeln & Teilen"
+    },
+    "landing": {
+      "heroTitlePart1": "Der ",
+      "heroTitleHighlight": "Moment",
+      "heroTitlePart2": " bevor sich alles ändert.",
+      "heroSubtitle": "Ein gemeinsamer Countdown in die Zukunft — erschaffe deinen Moment, setze deine Absicht und tritt mit Bedeutung in %s ein.",
+      "ctaPrimary": "Erschaffe deinen Moment",
+      "ctaSecondary": "Wie es funktioniert",
+      "howItWorksTitle": "Erschaffe deinen Moment.",
+      "howItWorksSubtitle": "Einfache, schöne Werkzeuge, damit 2026 genau so ankommt, wie du es willst.",
+      "featureVibeTitle": "Wähle deinen Vibe",
+      "featureVibeDesc": "Setze die Atmosphäre. Von ruhiger Leere bis zu strahlenden Auroras.",
+      "featureIntentionTitle": "Setze deine Absicht",
+      "featureIntentionDesc": "Sperre einen Wunsch für die Zukunft. Sicher versiegelt, bis der Moment kommt.",
+      "featureSyncTitle": "Synchronisiere mit der Welt",
+      "featureSyncDesc": "Tritt einer lebenden Karte der Menschheit bei. Tausende warten zusammen in Echtzeit.",
+      "socialProofSubtitle": "Menschen teilen diesen Moment gerade jetzt",
+      "finalCtaTitle": "Deine Zukunft verdient einen Moment.",
+      "finalCtaButton": "Meinen Moment starten"
+    },
     "dynamicPhrases": [
       "Zeit ist die Währung deines Lebens.",
       "Die Zukunft gehört denen, die an die Schönheit ihrer Träume glauben.",
@@ -482,6 +735,24 @@
     "partyMode": "Modalità Festa",
     "settings": "Design Esperienza",
     "theme": "Tema Colore",
+    "themeData": {
+      "dark-void": {
+        "name": "Vuoto",
+        "desc": "Profondo. Calmo. Infinito."
+      },
+      "sunset": {
+        "name": "Tramonto",
+        "desc": "Caldo. Appassionato. Vivo."
+      },
+      "aurora": {
+        "name": "Aurora",
+        "desc": "Mistico. Sereno. Fluido."
+      },
+      "starfield": {
+        "name": "Campo Stellare",
+        "desc": "Cosmico. Elettrico. Luminoso."
+      }
+    },
     "blur": "Sfocatura Atmosfera",
     "glow": "Luce Neon",
     "countdownTitle": "Il conto alla rovescia per chi vuoi diventare.",
@@ -494,6 +765,11 @@
     "atmosphere": "Atmosfera",
     "typography": "Tipografia",
     "saveConfig": "Salva configurazione",
+    "copyLink": "Copia Link",
+    "scanningGlobal": "Scansione Globale...",
+    "legalDisclaimer": "Sigillando questo momento, accetti i nostri {terms} e l'uso dei cookie per preservare la tua eredità.",
+    "termsLink": "Termini",
+    "toastCopied": "Link copiato negli appunti",
     "limitMessage": "La versione gratuita include un desiderio.",
     "postCreate": "Il tuo momento è vivo. Condividilo.",
     "premiumTeaserTitle": "Vuoi che questo momento duri?",
@@ -550,6 +826,54 @@
     "notFoundTitle": "Momento Perso nel Tempo",
     "notFoundMessage": "La cronologia richiesta non è stata trovata.",
     "returnHome": "Torna alla Home",
+    "sealedUntil": "Sigillato fino al %s",
+    "sealedStatus": "Sigillato",
+    "onboarding": {
+      "title1": "L'orologio ticchetta.",
+      "subtitle1": "Il tuo momento si avvicina.",
+      "enterCta": "Entra",
+      "themeTitle": "Come si sente il tuo futuro?",
+      "themeDesc": "Seleziona un'atmosfera per dare il tono.",
+      "intentionTitle": "Fallo durare.",
+      "intentionDesc": "Qual è la tua speranza più importante per il %s?",
+      "intentionPlaceholder": "Io farò...",
+      "suggestions": [
+        "Trovare la mia pace",
+        "Costruire qualcosa di nuovo",
+        "Amare senza paura"
+      ],
+      "usernameTitle": "Rivendica la tua Identità",
+      "usernameDesc": "La tua capsula ha bisogno di un custode.",
+      "continueButton": "Avanti: Firma",
+      "backButton": "Indietro",
+      "reviewCapsule": "Rivedi Capsula",
+      "sealPrivate": "Sigilla Privatamente",
+      "sealPublic": "Sigilla & Condividi",
+      "editButton": "Modifica",
+      "previewTitle": "La Tua Eredità Attende",
+      "previewDesc": "Questo momento sarà bloccato fino al 2027.",
+      "sealButton": "Sigilla",
+      "sealAndShare": "Sigilla & Condividi"
+    },
+    "landing": {
+      "heroTitlePart1": "Il ",
+      "heroTitleHighlight": "momento",
+      "heroTitlePart2": " prima che tutto cambi.",
+      "heroSubtitle": "Un conto alla rovescia condiviso verso il futuro — crea il tuo momento, imposta la tua intenzione ed entra nel %s con significato.",
+      "ctaPrimary": "Crea il tuo Momento",
+      "ctaSecondary": "Come funziona",
+      "howItWorksTitle": "Crea il tuo momento.",
+      "howItWorksSubtitle": "Strumenti semplici e belli per far arrivare il 2026 esattamente come vuoi.",
+      "featureVibeTitle": "Scegli la tua Vibrazione",
+      "featureVibeDesc": "Imposta l'atmosfera. Dai vuoti calmi alle aurore radiose.",
+      "featureIntentionTitle": "Imposta la tua Intenzione",
+      "featureIntentionDesc": "Blocca un desiderio per il futuro. Sigillato al sicuro fino all'arrivo del momento.",
+      "featureSyncTitle": "Sincronizzati col Mondo",
+      "featureSyncDesc": "Unisciti a una mappa vivente dell'umanità. Migliaia aspettano insieme in tempo reale.",
+      "socialProofSubtitle": "Persone che condividono questo momento proprio ora",
+      "finalCtaTitle": "Il tuo futuro merita un momento.",
+      "finalCtaButton": "Inizia il mio Momento"
+    },
     "dynamicPhrases": [
       "Il tempo è la valuta della tua vita.",
       "Il futuro appartiene a coloro che credono nella bellezza dei propri sogni.",
@@ -587,6 +911,24 @@
     "partyMode": "Modo Festa",
     "settings": "Design de Experiência",
     "theme": "Tema de Cor",
+    "themeData": {
+      "dark-void": {
+        "name": "Vazio",
+        "desc": "Profundo. Calmo. Infinito."
+      },
+      "sunset": {
+        "name": "Pôr do sol",
+        "desc": "Quente. Apaixonado. Vivo."
+      },
+      "aurora": {
+        "name": "Aurora",
+        "desc": "Místico. Sereno. Fluido."
+      },
+      "starfield": {
+        "name": "Campo Estelar",
+        "desc": "Cósmico. Elétrico. Brilhante."
+      }
+    },
     "blur": "Desfoque Atmosfera",
     "glow": "Brilho Neon",
     "countdownTitle": "A contagem regressiva para quem você quer se tornar.",
@@ -599,6 +941,11 @@
     "atmosphere": "Atmosfera",
     "typography": "Tipografia",
     "saveConfig": "Salvar Configuração",
+    "copyLink": "Copiar Link",
+    "scanningGlobal": "Escaneando frequência global...",
+    "legalDisclaimer": "Ao selar este momento, você concorda com nossos {terms} e aceita o uso de cookies para preservar seu legado.",
+    "termsLink": "Termos",
+    "toastCopied": "Link copiado para a área de transferência",
     "limitMessage": "A versão gratuita inclui um desejo.",
     "postCreate": "Seu momento está vivo. Compartilhe.",
     "premiumTeaserTitle": "Quer que este momento dure?",
@@ -641,6 +988,54 @@
     "notFoundTitle": "Momento Perdido no Tempo",
     "notFoundMessage": "A linha do tempo solicitada não pôde ser encontrada.",
     "returnHome": "Voltar ao Início",
+    "sealedUntil": "Selado até %s",
+    "sealedStatus": "Selado",
+    "onboarding": {
+      "title1": "O relógio está correndo.",
+      "subtitle1": "Seu momento se aproxima.",
+      "enterCta": "Entrar",
+      "themeTitle": "Como seu futuro se sente?",
+      "themeDesc": "Selecione uma atmosfera para definir o tom.",
+      "intentionTitle": "Faça durar.",
+      "intentionDesc": "Qual é a sua esperança mais importante para %s?",
+      "intentionPlaceholder": "Eu vou...",
+      "suggestions": [
+        "Encontrar minha paz",
+        "Construir algo novo",
+        "Amar sem medo"
+      ],
+      "usernameTitle": "Reivindique sua Identidade",
+      "usernameDesc": "Sua cápsula precisa de um guardião.",
+      "continueButton": "Próximo: Assinar",
+      "backButton": "Voltar",
+      "reviewCapsule": "Revisar Cápsula",
+      "sealPrivate": "Selar Privadamente",
+      "sealPublic": "Selar & Compartilhar",
+      "editButton": "Alterar",
+      "previewTitle": "Seu Legado Aguarda",
+      "previewDesc": "Este momento ficará trancado até 2027.",
+      "sealButton": "Selar",
+      "sealAndShare": "Selar & Compartilhar"
+    },
+    "landing": {
+      "heroTitlePart1": "O ",
+      "heroTitleHighlight": "momento",
+      "heroTitlePart2": " antes que tudo mude.",
+      "heroSubtitle": "Uma contagem regressiva compartilhada para o futuro — crie seu momento, defina sua intenção e entre em %s com significado.",
+      "ctaPrimary": "Crie seu Momento",
+      "ctaSecondary": "Como funciona",
+      "howItWorksTitle": "Crie seu momento.",
+      "howItWorksSubtitle": "Ferramentas simples e belas para fazer 2026 chegar exatamente como você quer.",
+      "featureVibeTitle": "Escolha sua Vibe",
+      "featureVibeDesc": "Defina a atmosfera. De vazios calmos a auroras radiantes.",
+      "featureIntentionTitle": "Defina sua Intenção",
+      "featureIntentionDesc": "Tranque um desejo para o futuro. Selado com segurança até o momento chegar.",
+      "featureSyncTitle": "Sincronize com o Mundo",
+      "featureSyncDesc": "Junte-se a um mapa vivo da humanidade. Milhares esperando juntos em tempo real.",
+      "socialProofSubtitle": "Pessoas compartilhando este momento agora mesmo",
+      "finalCtaTitle": "Seu futuro merece um momento.",
+      "finalCtaButton": "Iniciar meu Momento"
+    },
     "dynamicPhrases": [
       "O tempo é a moeda da sua vida.",
       "O futuro pertence àqueles que acreditam na beleza de seus sonhos.",
@@ -678,6 +1073,24 @@
     "partyMode": "パーティーモード",
     "settings": "体験デザイン",
     "theme": "カラーテーマ",
+    "themeData": {
+      "dark-void": {
+        "name": "虚空",
+        "desc": "深い。穏やか。無限。"
+      },
+      "sunset": {
+        "name": "夕日",
+        "desc": "暖かい。情熱的。生きている。"
+      },
+      "aurora": {
+        "name": "オーロラ",
+        "desc": "神秘的。穏やか。流れる。"
+      },
+      "starfield": {
+        "name": "星原",
+        "desc": "宇宙。電気的。明るい。"
+      }
+    },
     "blur": "雰囲気のぼかし",
     "glow": "ネオングロー",
     "countdownTitle": "あなたがなりたい自分へのカウントダウン。",
@@ -690,6 +1103,11 @@
     "atmosphere": "雰囲気",
     "typography": "タイポグラフィ",
     "saveConfig": "設定を保存",
+    "copyLink": "リンクをコピー",
+    "scanningGlobal": "グローバル周波数をスキャン中...",
+    "legalDisclaimer": "この瞬間を封印することで、{terms}に同意し、レガシーを保存するためのクッキーの使用を受け入れたことになります。",
+    "termsLink": "利用規約",
+    "toastCopied": "リンクをクリップボードにコピーしました",
     "limitMessage": "無料版には願いが一つ含まれています。",
     "postCreate": "あなたの瞬間は生きています。共有してください。",
     "premiumTeaserTitle": "この瞬間を続けたいですか？",
@@ -746,6 +1164,54 @@
     "notFoundTitle": "時の中に失われた瞬間",
     "notFoundMessage": "リクエストされたタイムラインは見つかりませんでした。",
     "returnHome": "ホームに戻る",
+    "sealedUntil": "%s まで封印",
+    "sealedStatus": "封印済み",
+    "onboarding": {
+      "title1": "時計は進んでいます。",
+      "subtitle1": "あなたの瞬間が近づいています。",
+      "enterCta": "入る",
+      "themeTitle": "あなたの未来はどう感じますか？",
+      "themeDesc": "雰囲気を設定してください。",
+      "intentionTitle": "それを永続させる。",
+      "intentionDesc": "%s 年の最も重要な希望は何ですか？",
+      "intentionPlaceholder": "私は...",
+      "suggestions": [
+        "平和を見つける",
+        "新しいものを作る",
+        "恐れずに愛する"
+      ],
+      "usernameTitle": "アイデンティティを確立",
+      "usernameDesc": "カプセルには守護者が必要です。",
+      "continueButton": "次へ：署名",
+      "backButton": "戻る",
+      "reviewCapsule": "カプセルを確認",
+      "sealPrivate": "非公開で封印",
+      "sealPublic": "封印して共有",
+      "editButton": "変更する",
+      "previewTitle": "あなたの遺産が待っています",
+      "previewDesc": "この瞬間は 2027 年までロックされます。",
+      "sealButton": "封印",
+      "sealAndShare": "封印して共有"
+    },
+    "landing": {
+      "heroTitlePart1": "",
+      "heroTitleHighlight": "瞬間",
+      "heroTitlePart2": " すべてが変わる前に。",
+      "heroSubtitle": "未来への共有カウントダウン — あなたの瞬間を作り、意図を定め、意味を持って %s に入りましょう。",
+      "ctaPrimary": "あなたの瞬間を作る",
+      "ctaSecondary": "仕組みを見る",
+      "howItWorksTitle": "あなたの瞬間を作る。",
+      "howItWorksSubtitle": "2026年を思い通りに迎えるためのシンプルで美しいツール。",
+      "featureVibeTitle": "バイブを選ぶ",
+      "featureVibeDesc": "雰囲気を設定。静かな虚空から輝くオーロラまで。",
+      "featureIntentionTitle": "意図を定める",
+      "featureIntentionDesc": "未来への願いをロック。その時が来るまで安全に封印されます。",
+      "featureSyncTitle": "世界と同期",
+      "featureSyncDesc": "人類の生きた地図に参加。何千人もがリアルタイムで一緒に待っています。",
+      "socialProofSubtitle": "今まさにこの瞬間を共有している人々",
+      "finalCtaTitle": "あなたの未来には瞬間が必要です。",
+      "finalCtaButton": "私の瞬間を始める"
+    },
     "dynamicPhrases": [
       "時間は人生の通貨です。",
       "未来は、夢の美しさを信じる人々のものです。",
@@ -783,6 +1249,24 @@
     "partyMode": "派对模式",
     "settings": "体验设计",
     "theme": "颜色主题",
+    "themeData": {
+      "dark-void": {
+        "name": "虚空",
+        "desc": "深邃。平静。无限。"
+      },
+      "sunset": {
+        "name": "日落",
+        "desc": "温暖。热情。鲜活。"
+      },
+      "aurora": {
+        "name": "极光",
+        "desc": "神秘。宁静。流动。"
+      },
+      "starfield": {
+        "name": "星域",
+        "desc": "宇宙。带电。明亮。"
+      }
+    },
     "blur": "氛围模糊",
     "glow": "霓虹光辉",
     "countdownTitle": "倒计时，为了你想成为的人。",
@@ -795,6 +1279,11 @@
     "atmosphere": "氛围",
     "typography": "排版",
     "saveConfig": "保存配置",
+    "copyLink": "复制链接",
+    "scanningGlobal": "正在扫描全球频率...",
+    "legalDisclaimer": "封存此时刻即表示您同意我们的{terms}并接受使用cookie以随时间保存您的遗产。",
+    "termsLink": "条款",
+    "toastCopied": "链接已复制到剪贴板",
     "limitMessage": "免费版本包含一个愿望。",
     "postCreate": "你的时刻是鲜活的。分享它。",
     "premiumTeaserTitle": "想让这一刻延续吗？",
@@ -851,6 +1340,54 @@
     "notFoundTitle": "迷失在时间中的时刻",
     "notFoundMessage": "无法找到请求的时间线。",
     "returnHome": "返回首页",
+    "sealedUntil": "封存至 %s",
+    "sealedStatus": "已封存",
+    "onboarding": {
+      "title1": "时钟在滴答作响。",
+      "subtitle1": "你的时刻正在临近。",
+      "enterCta": "进入",
+      "themeTitle": "你的未来感觉如何？",
+      "themeDesc": "选择一种氛围来设定基调。",
+      "intentionTitle": "让它持久。",
+      "intentionDesc": "你对 %s 年最重要的希望是什么？",
+      "intentionPlaceholder": "我将...",
+      "suggestions": [
+        "寻找平静",
+        "构建新事物",
+        "无畏地爱"
+      ],
+      "usernameTitle": "认领你的身份",
+      "usernameDesc": "你的胶囊需要一个守护者。",
+      "continueButton": "下一步：签名",
+      "backButton": "返回",
+      "reviewCapsule": "审查胶囊",
+      "sealPrivate": "私密封存",
+      "sealPublic": "封存并分享",
+      "editButton": "更改",
+      "previewTitle": "你的遗产在等待",
+      "previewDesc": "这一刻将被锁定直到 2027 年。",
+      "sealButton": "封存",
+      "sealAndShare": "封存并分享"
+    },
+    "landing": {
+      "heroTitlePart1": "一切改变之前的",
+      "heroTitleHighlight": "时刻",
+      "heroTitlePart2": "。",
+      "heroSubtitle": "通往未来的共享倒计时 —— 创造你的时刻，设定你的意图，带着意义步入 %s。",
+      "ctaPrimary": "创造你的时刻",
+      "ctaSecondary": "它是如何工作的",
+      "howItWorksTitle": "创造你的时刻。",
+      "howItWorksSubtitle": "简单而美丽的工具，让 2026 正如你要的那样到来。",
+      "featureVibeTitle": "选择你的氛围",
+      "featureVibeDesc": "设定气氛。从平静的虚空到灿烂的极光。",
+      "featureIntentionTitle": "设定你的意图",
+      "featureIntentionDesc": "锁定一个未来的愿望。安全封存，直到那一刻到来。",
+      "featureSyncTitle": "与世界同步",
+      "featureSyncDesc": "加入人类的活地图。成千上万的人正在实时一起等待。",
+      "socialProofSubtitle": "此时此刻正在分享这一刻的人们",
+      "finalCtaTitle": "你的未来值得拥有一个时刻。",
+      "finalCtaButton": "开始我的时刻"
+    },
     "dynamicPhrases": [
       "时间是你生命的货币。",
       "未来属于那些相信梦想之美的人。",
