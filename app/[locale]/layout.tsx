@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Cormorant_Garamond, Space_Grotesk, Outfit, Cinzel, Syne } from "next/font/google";
+import { ClientToaster } from "@/components/ui/ClientToaster";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 import "@/app/globals.css";
 
@@ -193,7 +195,10 @@ export default async function LocaleLayout({
                 className="antialiased bg-background text-foreground transition-colors duration-300 min-h-screen"
             >
                 {children}
+                <LanguageSwitcher className="fixed top-24 right-4 sm:top-6 sm:right-6" />
+                <ClientToaster />
             </body>
         </html>
     );
 }
+
