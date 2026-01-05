@@ -32,8 +32,15 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
             if (initialState.theme) setTheme(initialState.theme);
             if (initialState.atmosphere) setAtmosphere(initialState.atmosphere);
             if (initialState.message) setWish(initialState.message);
+        } else {
+            // Try to recover from local storage if no initial state (e.g. pure client nav)
+            const storedUser = localStorage.getItem("mz-username");
+            if (storedUser && !username) setUsername(storedUser);
+
+            const storedWish = localStorage.getItem("mz-wish");
+            if (storedWish && !wish) setWish(storedWish);
         }
-    }, [initialState, setTheme, setAtmosphere, setWish]);
+    }, [initialState, setTheme, setAtmosphere, setWish, username, wish]);
 
     const handleUpdate = async () => {
         if (!username || !wish) return;
@@ -104,6 +111,9 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
         if (data.username) {
             setUsername(data.username);
             setUserInfo({ name: data.username });
+
+            // Persist locally immediately
+            localStorage.setItem("mz-username", data.username);
 
             // Auto-save since they clicked "Seal"
             const toastId = toast.loading("Sealing your capsule...");
@@ -193,7 +203,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                                 />
                             </div>
                         ) : (
-                            <div className="w-full h-full flex flex-col items-center justify-start pt-32 md:pt-40 px-4 pb-20 overflow-y-auto custom-scrollbar">
+                            <div className="w-full h-full min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4 overflow-y-auto custom-scrollbar">
                                 <TimeCapsule
                                     onBack={() => isEditingCapsule ? setIsEditingCapsule(false) : setView('countdown')}
                                     wish={wish}
@@ -214,6 +224,18 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                                     titleText={lang.capsuleTitle || "Your Time Capsule"}
                                     subtitleText={lang.capsuleSubtitle || "What do you want to tell your future self?"}
                                     cancelText={isEditingCapsule ? "Cancel Edit" : (lang.returnToCountdown || "Return to Countdown")}
+                                    copyLinkText={lang.copyLink || "Copy Link"}
+                                    legalDisclaimerText={lang.legalDisclaimer}
+                                    termsText={lang.termsLink}
+                                    onCopyLink={(user) => {
+                                        const url = `${window.location.origin}/en/u/${user}`;
+                                        navigator.clipboard.writeText(url);
+
+                                        // Standard Minimal Toast
+                                        toast.success(lang.toastCopied || "Link copied", {
+                                            duration: 2000,
+                                        });
+                                    }}
                                 />
                             </div>
                         )}
