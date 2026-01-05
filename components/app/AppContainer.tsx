@@ -24,6 +24,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
     const [isEditingCapsule, setIsEditingCapsule] = useState(false);
     const [username, setUsername] = useState(initialState?.username || "");
     const [isSending, setIsSending] = useState(false);
+    const [isSavedToDatabase, setIsSavedToDatabase] = useState(!!initialState); // Track if moment is saved to DB
 
     const targetYear = new Date().getFullYear() + 1;
 
@@ -43,31 +44,45 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
     }, [initialState, setTheme, setAtmosphere, setWish, username, wish]);
 
     const handleUpdate = async () => {
-        if (!username || !wish) return;
+        if (!wish) return;
         setIsSending(true);
-        const toastId = toast.loading("Updating your moment...");
+        // Corrected translation path: updateMoment is at the root level, not inside onboarding
+        const toastId = toast.loading(lang.updateMoment || "Updating your moment...");
 
-        try {
-            await updateMoment({
-                username,
-                message: wish,
-                theme,
-                atmosphere,
-                typography,
-                targetYear
-            });
+        // If saved to database, update there; otherwise just update localStorage
+        if (isSavedToDatabase && username) {
+            try {
+                await updateMoment({
+                    username,
+                    message: wish,
+                    theme,
+                    atmosphere,
+                    typography,
+                    targetYear
+                });
 
-            toast.success("Moment updated successfully", { id: toastId });
+                toast.success("Moment updated successfully", { id: toastId });
+                localStorage.setItem("mz-wish", wish);
+                localStorage.setItem("mz-theme", theme);
+                setIsEditingCapsule(false); // Return to View Mode
+            } catch (error: any) {
+                console.error("Update failed:", error);
+                toast.error(error.message || "Failed to update", { id: toastId });
+                // Fallback local update
+                localStorage.setItem("mz-wish", wish);
+                localStorage.setItem("mz-theme", theme);
+                setIsEditingCapsule(false);
+            } finally {
+                setIsSending(false);
+            }
+        } else {
+            // Local mode - just update localStorage
             localStorage.setItem("mz-wish", wish);
             localStorage.setItem("mz-theme", theme);
-            setIsEditingCapsule(false); // Return to View Mode
-        } catch (error: any) {
-            console.error("Update failed:", error);
-            toast.error(error.message || "Failed to update", { id: toastId });
-            // Fallback local update
-            localStorage.setItem("mz-wish", wish);
-            localStorage.setItem("mz-theme", theme);
-        } finally {
+            localStorage.setItem("mz-atmosphere", atmosphere);
+            localStorage.setItem("mz-typography", typography);
+            toast.success("Moment updated locally", { id: toastId });
+            setIsEditingCapsule(false);
             setIsSending(false);
         }
     };
@@ -89,6 +104,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
 
             toast.success("Moment sealed forever", { id: toastId });
             console.log("Moment synced to cloud.");
+            setIsSavedToDatabase(true); // Mark as saved to DB
         } catch (error: any) {
             if (error.isDuplicate) {
                 toast.error("Username taken. Try another.", { id: toastId });
@@ -127,6 +143,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                     targetYear
                 });
                 toast.success("Capsule sealed anonymously", { id: toastId });
+                setIsSavedToDatabase(true); // Mark as saved to DB immediately
                 localStorage.setItem("mz-username", data.username);
                 localStorage.setItem("mz-wish", data.intention);
                 localStorage.setItem("mz-theme", theme);
@@ -219,16 +236,19 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                                     startInEditMode={isEditingCapsule}
                                     placeholder={lang.capsulePlaceholder || "Write your intention..."}
                                     buttonText={lang.onboarding?.sealButton || "Seal Intention"}
-                                    updateMomentText={lang.onboarding?.updateMoment || "Update Moment"}
+                                    updateMomentText={lang.updateMoment || "Update Moment"} // Corrected path
                                     editMomentText={lang.onboarding?.editButton || "Make Changes"}
                                     titleText={lang.capsuleTitle || "Your Time Capsule"}
                                     subtitleText={lang.capsuleSubtitle || "What do you want to tell your future self?"}
                                     cancelText={isEditingCapsule ? "Cancel Edit" : (lang.returnToCountdown || "Return to Countdown")}
                                     copyLinkText={lang.copyLink || "Copy Link"}
+                                    showCopyLink={isSavedToDatabase} // Only show if saved to database
                                     legalDisclaimerText={lang.legalDisclaimer}
                                     termsText={lang.termsLink}
                                     onCopyLink={(user) => {
-                                        const url = `${window.location.origin}/en/u/${user}`;
+                                        // Use dynamic locale from params instead of hardcoded 'en'
+                                        const currentLocale = params?.locale || 'en';
+                                        const url = `${window.location.origin}/${currentLocale}/u/${user}`;
                                         navigator.clipboard.writeText(url);
 
                                         // Standard Minimal Toast

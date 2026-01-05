@@ -27,7 +27,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center min-h-[70vh] text-center gap-12"
+                className="flex flex-col items-center justify-center min-h-dvh text-center gap-12 py-12"
             >
                 <div className="relative group cursor-default">
                     <div className="absolute inset-0 bg-primary/10 blur-[60px] rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
@@ -68,7 +68,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="flex flex-col items-center justify-center w-full max-w-5xl mx-auto gap-12 pt-10 px-4"
+                className="flex flex-col items-center justify-center min-h-dvh w-full max-w-5xl mx-auto gap-12 py-12 px-4"
             >
                 <div className="space-y-4 text-center">
                     <h2 className="text-4xl md:text-5xl font-brand-display font-bold">{t.themeTitle || "How does your future feel?"}</h2>
@@ -161,7 +161,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto gap-12 pt-10 text-center px-4"
+                className="flex flex-col items-center justify-center min-h-dvh w-full max-w-4xl mx-auto gap-12 py-12 text-center px-4"
             >
                 <div className="space-y-4">
                     <h2 className="text-3xl md:text-4xl font-brand-display font-medium text-white/80">{t.intentionTitle || "Make it last."}</h2>
@@ -225,7 +225,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto gap-8 pt-10 text-center px-4"
+                className="flex flex-col items-center justify-center min-h-dvh w-full max-w-4xl mx-auto gap-8 py-12 text-center px-4"
             >
                 <div className="space-y-4">
                     <h2 className="text-3xl md:text-4xl font-brand-display font-medium text-white/80">{t.usernameTitle || "Claim your Identity"}</h2>
@@ -275,7 +275,7 @@ export function OnboardingFlow({ onComplete, lang, targetYear, onThemeSelect }: 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-6xl mx-auto py-12 px-4 relative"
+                className="flex flex-col items-center justify-center min-h-dvh w-full max-w-6xl mx-auto py-12 px-4 relative"
             >
                 <div className="text-center space-y-2 mb-8 z-10">
                     <h2 className="text-2xl font-brand-display font-medium text-white/80">{t.previewTitle || "Your Legacy Awaits"}</h2>

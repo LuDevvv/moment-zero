@@ -28,6 +28,7 @@ interface TimeCapsuleProps {
     startInEditMode?: boolean;
     onCopyLink?: (username: string) => void;
     copyLinkText?: string;
+    showCopyLink?: boolean; // Only show copy link if moment is saved to database
     legalDisclaimerText?: string;
     termsText?: string;
 }
@@ -58,6 +59,7 @@ export function TimeCapsule({
     startInEditMode = false,
     onCopyLink,
     copyLinkText,
+    showCopyLink = true, // Default to true for backward compatibility
     legalDisclaimerText,
     termsText
 }: TimeCapsuleProps) {
@@ -167,7 +169,7 @@ export function TimeCapsule({
                 {isViewMode && (
                     <div className="flex flex-col items-center gap-6 mt-6 w-full">
                         {/* Primary Share Button */}
-                        {username && (
+                        {username && showCopyLink && (
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
