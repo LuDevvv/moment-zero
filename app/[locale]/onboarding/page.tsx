@@ -1,6 +1,6 @@
 
 import translations from "@/lib/translations.json";
-import { LandingPageClient } from "@/components/home/LandingPageClient";
+import { OnboardingPageClient } from "@/components/onboarding/OnboardingPageClient";
 
 export function generateStaticParams() {
     return Object.keys(translations).map((locale) => ({ locale }));
@@ -11,5 +11,5 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const lang = (translations as Record<string, any>)[locale] || (translations as Record<string, any>)["en"];
 
-    return <LandingPageClient lang={lang} locale={locale} />;
+    return <OnboardingPageClient lang={lang} locale={locale} />;
 }

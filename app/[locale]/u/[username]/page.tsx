@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 // Helper components
 import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import { LivePresence } from "@/components/ui/LivePresence";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 async function getMomentData(username: string) {
     if (username === "demo") {
@@ -69,6 +70,7 @@ export default async function UserMomentPage({ params }: { params: Promise<{ loc
     // Custom Public View Layout
     return (
         <main className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-x-hidden">
+            <LanguageSwitcher className="fixed top-6 right-6 z-[60]" />
             {/* Force specific background based on data */}
             <div className="fixed inset-0 -z-10">
                 <BackgroundEffects forceTheme={momentData.theme as any} forceAtmosphere={momentData.atmosphere as any} mode="app" />

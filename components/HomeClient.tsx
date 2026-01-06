@@ -11,6 +11,7 @@ import { LivePresence } from "@/components/ui/LivePresence";
 import { AmbientPlayer } from "@/components/ui/AmbientPlayer";
 import { ThemePanel } from "@/components/ui/ThemePanel";
 import { Toaster } from "sonner";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export default function HomeClient({ lang, initialState }: { lang: any, initialState?: any }) {
     // If initialState is present (e.g. shared link), start in 'app' mode
@@ -37,6 +38,10 @@ export default function HomeClient({ lang, initialState }: { lang: any, initialS
             {/* Persistent Background for seamless transition */}
             <BackgroundEffects mode={mode} />
             <Toaster position="top-center" richColors theme="dark" />
+            <Toaster position="top-center" richColors theme="dark" />
+            <LanguageSwitcher
+                className={`fixed right-6 z-[60] transition-all duration-500 ${mode === 'app' ? 'top-8 sm:top-10' : 'top-6'}`}
+            />
 
             <AnimatePresence>
                 {mode === 'app' && hasOnboarded && (
@@ -52,6 +57,8 @@ export default function HomeClient({ lang, initialState }: { lang: any, initialS
                                 <LivePresence lang={lang} />
                             </div>
                         </motion.div>
+
+
 
                         <motion.div
                             initial={{ opacity: 0 }}

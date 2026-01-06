@@ -223,7 +223,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                         {/* App Navigation / Controls could go here */}
 
                         {view === 'countdown' ? (
-                            <div className="w-full h-full flex flex-col items-center justify-center p-4">
+                            <div className="w-full h-full flex flex-col items-center justify-center pt-32 pb-4 px-4">
                                 <CountdownView
                                     onOpenCapsule={() => setView('capsule')}
                                     lang={lang}
@@ -231,7 +231,7 @@ export default function AppPage({ params, searchParams, lang, initialState, hasO
                                 />
                             </div>
                         ) : (
-                            <div className="w-full h-full min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4 overflow-y-auto custom-scrollbar">
+                            <div className="w-full h-full min-h-dvh flex flex-col items-center justify-center pt-32 pb-12 px-4 overflow-y-auto custom-scrollbar">
                                 <TimeCapsule
                                     onBack={() => isEditingCapsule ? setIsEditingCapsule(false) : setView('countdown')}
                                     wish={wish}
