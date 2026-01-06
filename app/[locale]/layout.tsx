@@ -5,6 +5,7 @@ import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { GlobalBackground } from "@/components/GlobalBackground";
 
 import "@/app/globals.css";
+import Script from "next/script";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -201,6 +202,14 @@ export default async function LocaleLayout({
                 {children}
 
                 <ClientToaster />
+
+                {/* Umami Analytics */}
+                <Script
+                    src={process.env.NEXT_PUBLIC_UMAMI_SRC || "https://analytics.umami.is/script.js"}
+                    data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || "2597e86b-5c2f-4910-b390-2d8e01f2331d"}
+                    strategy="afterInteractive"
+                    data-auto-track="true"
+                />
             </body>
         </html>
     );
