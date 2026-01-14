@@ -49,7 +49,7 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     // Content Security Policy
     response.headers.set(
         'Content-Security-Policy',
-        "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';"
+        "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://analytics.umami.is https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';"
     );
 
     // Strict Transport Security
